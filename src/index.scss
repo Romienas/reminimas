@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+
+
+// COLORS
+$borderColor: #BDBDBD;
+$mainTextColor: #212121;
+$secodaryTextColor: #757575;
+$accentColor: #FFC107;
+$accentColorHover: rgb(245, 184, 3);
+// COLORS END
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	font-family: 'Open Sans', sans-serif;
+	color: $mainTextColor;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+input {
+	border: none;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+// LAYOUT
+ .container {
+	 margin:0 50px;
+ }
+// LAYOUT END
+
+//COMPONENT
+ .input {
+	 border: 1px solid $borderColor;
+ }
+
+ .input__field {
+	padding: 10px;
+	width: 200px;
+ }
+
+ .button {
+	 width: fit-content;
+	 background-color: #FFC107;
+	 cursor: pointer;
+ }
+
+ .button:hover {
+	 background-color: $accentColorHover;
+ }
+ 
+ .button__text{
+	 padding: 10px;
+	 color: #FFFFFF;
+ }
+
+ .popup {
+	position: absolute;
+    right: 50px;
+    margin-top: 20px;
+	border: 1px solid $borderColor;
+	z-index: 3;
+}
+
+.popup__input {
+	margin: 30px;
+}
+
+.popup__bottom {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 30px;
+}
+
+.popup__text {
+	color: $secodaryTextColor;
+}
+// COMPONENT END
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+
+.header__login {
+	cursor: pointer;
+}
+
+.header__close-popup {
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+

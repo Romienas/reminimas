@@ -1,12 +1,13 @@
 import React from 'react';
-import Header from './modules/header'
-import {Container} from '@material-ui/core';
+import Header from './modules/header';
+import List from './modules/list';
 
 function App() {
   return (
-    <Container maxWidth='md'>
+    <div className='container'>
       <Header />
-    </Container>
+      <List />
+    </div>
   );
 }
 
