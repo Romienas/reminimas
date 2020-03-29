@@ -1,6 +1,7 @@
 import React from 'react';
 import List from './routes/list';
-import {Switch, Route} from 'react-router-dom'
+import Registration from './routes/registration';
+import {Switch, Route} from 'react-router-dom';
 
 function App() {
   return (
@@ -8,6 +9,9 @@ function App() {
       <Switch>
         <Route path='/' exact>
           <List />
+        </Route>
+        <Route path='/registration' exact>
+          <Registration />
         </Route>
       </Switch>
     </div>

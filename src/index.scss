@@ -63,6 +63,11 @@ textarea:focus, input:focus{
     outline: none;
 }
 
+a {
+	color: unset;
+	text-decoration: none;
+}
+
 h1 {
     font-size: 30px;
 }
@@ -143,3 +148,27 @@ h1 {
     z-index: 2;
 }
 
+.registration {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 85vh;
+}
+
+.registration__box {
+	border: 1px solid $borderColor;
+}
+
+.registration__input {
+	padding: 0 30px 30px;
+}
+
+.registration__input:first-child {
+	padding-top: 30px;
+}
+
+.registration__button {
+	display: flex;
+	padding: 0 30px 30px;
+	float: right;
+}

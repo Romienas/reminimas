@@ -15,7 +15,7 @@ export default class PopUp extends React.Component {
                 </div>
                 <div className='popup__bottom'>
                     <div className='popup__text'>
-                        Registruotis
+                        <a href='/registration' >Registruotis</a>
                     </div>
                     <Button buttonText='Prisijungti' />
                 </div>
