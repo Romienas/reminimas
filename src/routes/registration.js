@@ -21,22 +21,22 @@ export default class Registration extends React.Component {
         this.getPassword = this.getPassword.bind(this);
     }
 
-    getEmail = (e) => {
+    getEmail = (email) => {
         this.setState({
-            email: e.target.value
+            email
         });
-
-        //TODO
-        console.log(this.state.email)
     }
 
-    getPassword = (e) => {
+    getPassword = (password) => {
         this.setState({
-            password: e.target.value
+            password
         });
+    }
 
-        //TODO
-        console.log(this.state.password)
+    getSecondPassword = (secondPassword) => {
+        this.setState({
+            secondPassword
+        });
     }
 
 
@@ -47,13 +47,25 @@ export default class Registration extends React.Component {
                 <div className='registration'>
                     <div className='registration__box'>
                         <div className='registration__input'>
-                            <Input type='email' placeholder='El. pašto adresas' onChange={this.getEmail} onClick={this.klik} />
+                            <Input 
+                                type='email' 
+                                placeholder='El. pašto adresas' 
+                                changeHandler={this.getEmail} 
+                            />
                         </div>
                         <div className='registration__input'>
-                            <Input type='password' placeholder='Slaptažodis' onChange={this.getPassword} />
+                            <Input 
+                                type='password' 
+                                placeholder='Slaptažodis' 
+                                changeHandler={this.getPassword} 
+                            />
                         </div>
                         <div className='registration__input'>
-                            <Input type='password' placeholder='Pakartokite slaptažodį' onChange={this.getSecondPassword} />
+                            <Input 
+                                type='password' 
+                                placeholder='Pakartokite slaptažodį' 
+                                changeHandler={this.getSecondPassword} 
+                            />
                         </div>
                         <div className='registration__button'>
                             <Button buttonText='Regisrtuotis' />

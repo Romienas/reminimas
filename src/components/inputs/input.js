@@ -8,7 +8,7 @@ export default class Input extends React.Component {
     }
 
     handleChange = (e) => {
-        this.props.changeHandler(e.tartget.value)
+        this.props.changeHandler(e.target.value)
     }
 
     render(){
