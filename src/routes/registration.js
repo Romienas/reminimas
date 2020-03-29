@@ -19,6 +19,7 @@ export default class Registration extends React.Component {
 
         this.getEmail = this.getEmail.bind(this);
         this.getPassword = this.getPassword.bind(this);
+        this.registrate = this.registrate.bind(this);
     }
 
     getEmail = (email) => {
@@ -39,6 +40,13 @@ export default class Registration extends React.Component {
         });
     }
 
+    registrate = () => {
+        if(this.state.password === this.state.secondPassword && this.state.email !== ''){
+            console.log('tinka')
+        }else{
+            console.log('netinka')
+        }
+    }
 
     render() {
         return(
@@ -68,7 +76,7 @@ export default class Registration extends React.Component {
                             />
                         </div>
                         <div className='registration__button'>
-                            <Button buttonText='Regisrtuotis' />
+                            <Button buttonText='Regisrtuotis' handleClick={this.registrate} />
                         </div>
                     </div>
                 </div>
