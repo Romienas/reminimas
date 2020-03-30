@@ -72,6 +72,10 @@ h1 {
     font-size: 30px;
 }
 
+h2 {
+	font-size: 25px;
+}
+
 // LAYOUT
  .container {
 	 margin:0 50px;
@@ -171,4 +175,9 @@ h1 {
 	display: flex;
 	padding: 0 30px 30px;
 	float: right;
+}
+
+.four-zero-four {
+	margin: 50px auto;
+	width: fit-content;
 }

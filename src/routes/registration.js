@@ -43,7 +43,8 @@ export default class Registration extends React.Component {
                 .catch(function(error) {
                     var errorCode = error.code;
                     var errorMessage = error.message;
-                    console.log(errorCode, errorMessage);
+                    console.log('kodas', errorCode, errorMessage);
+                    console.log('zinute', errorMessage);
                 });
 
             console.log('tinka')
