@@ -177,8 +177,24 @@ h2 {
     height: 100px;
 }
 
+.header__user {
+	display: flex;
+}
+.header__signout {
+	cursor: pointer;
+	margin-left: 30px;
+}
+
+.header__signout:hover {
+	color: $accentColorHover;
+}
+
 .header__login {
 	cursor: pointer;
+}
+
+.header__login:hover {
+	color: $accentColorHover;
 }
 
 .header__close-popup {

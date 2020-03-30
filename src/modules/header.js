@@ -17,17 +17,19 @@ export default class Header extends React.Component {
     componentDidMount(){
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                localStorage.setItem('userEmail', user.email)
+                //TODO
+                console.log(user)
+                localStorage.setItem('userEmail', user.email);
+                localStorage.setItem('userID', user.uid);
                 this.setState({
+                    showPopUp: false,
                     userLogged: true
                 })
             } else {
-                this.setState({
-                    userLogged: false
-                  })
             }
           });
     }
+ 
 
     showPopUp = () => {
         this.setState({
@@ -37,6 +39,8 @@ export default class Header extends React.Component {
 
     signOut = () => {
         firebase.auth().signOut().then(() => {
+            localStorage.removeItem('userEmail');
+            localStorage.removeItem('userID');
             this.setState({
                 userLogged: false
             })
@@ -52,10 +56,10 @@ export default class Header extends React.Component {
                     <h1>Paveikslų rėminimas</h1>
                 </div>
                 <div>
-                    { this.state.userLogged ? 
-                        <div>
+                    { localStorage.getItem('userID') ? 
+                        <div className='header__user'>
                             <div>{localStorage.getItem('userEmail')}</div>
-                            <div onClick={this.signOut}>Atsijungti</div>
+                            <div className='header__signout' onClick={this.signOut}>Atsijungti</div>
                         </div> :
                         <div className='header__login' onClick={this.showPopUp}>Prisijungti</div>
                     }
@@ -63,7 +67,7 @@ export default class Header extends React.Component {
                     <div>
                         <div className='header__close-popup' onClick={this.showPopUp}></div>
                         <PopUp />
-                        </div>
+                    </div>
                     }
                 </div>
             </div>

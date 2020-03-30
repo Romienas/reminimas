@@ -31,6 +31,11 @@ export default class PopUp extends React.Component {
 
     signIn = () => {
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then((user) => {
+            localStorage.setItem('userEmail', user.email);
+            localStorage.setItem('userID', user.uid);
+            
+        })
         .catch((error) => {
             let errorCode = error.code;
             let errorMessage = error.message;
