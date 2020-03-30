@@ -13,12 +13,16 @@ export default class Registration extends React.Component {
             email: '',
             password: '',
             secondPassword: '',
-            falseEmail: true
+            falseEmail: false,
+            badPassword: false,
+            usedEmail: false,
+            registered: false
         }
 
         this.getEmail = this.getEmail.bind(this);
         this.getPassword = this.getPassword.bind(this);
         this.registrate = this.registrate.bind(this);
+        this.falseEmail = this.falseEmail.bind(this);
     }
 
     getEmail = (email) => {
@@ -42,23 +46,49 @@ export default class Registration extends React.Component {
     registrate = () => {
         if(this.state.password === this.state.secondPassword && this.state.email !== ''){
             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-                .catch(function(error) {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    console.log('kodas', errorCode, errorMessage);
-                    console.log('zinute', errorMessage);
-                });
+            .then(() => {
+                this.setState({
+                    registered: true
+                })
+            })    
+            .catch(
+                    (err) => {
+                        var errorCode = err.code;
+                        var errorMessage = err.message;
 
-            console.log('tinka')
+                        console.log(errorCode, errorMessage);
+                        if(errorCode === 'auth/invalid-email'){
+                            this.setState({
+                                falseEmail: true
+                            });
+                        } else if (errorCode === 'auth/weak-password'){
+                            this.setState({
+                                badPassword: true
+                            })
+                        } else if (errorCode === 'auth/email-already-in-use'){
+                            this.setState({
+                                usedEmail: true
+                            })
+                        }
+                }
+                );
         }else{
-            console.log('netinka')
         }
+    }
+
+    falseEmail = () => {
+        this.setState({
+            falseEmail: true
+        });
     }
 
     render() {
         return(
             <div>
-                {this.state.falseEmail === true ? <InfoPop infoText='Blogai nurodytas el. pašto adresas' /> : null}
+                {this.state.falseEmail === true ? <InfoPop infoText='Blogai nurodytas el. pašto adresas.' /> : null}
+                {this.state.badPassword === true ? <InfoPop infoText='Silpnas slaptažodis. Slaptažodis turis susidaryti bet iš 6 simbolių.' /> : null}
+                {this.state.usedEmail === true ? <InfoPop infoText='Vartotojas su šiuo el. pašto adresu jau egzistuoja.' /> : null}
+                {this.state.registered === true ? <InfoPop infoText='Jūsų paskyra sėkmingai sukurta. Galite prisijungti.' /> : null}
                 <Header />
                 <div className='registration'>
                     <div className='registration__box'>
