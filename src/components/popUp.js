@@ -50,6 +50,7 @@ export default class PopUp extends React.Component {
         return(
             <div>
                 {this.state.badLogin ? <InfoPop infoText='Neteisingai suvesti duomenys, bandykite dar kartą' /> : null}
+                {/* TODO uzdeti backgrounda */}
                 <div className='popup'>
                     <div className='popup__input'>
                         <Input type='text' placeholder='El. paštas' changeHandler={this.getEmail} />

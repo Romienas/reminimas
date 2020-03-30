@@ -6,6 +6,8 @@ import InfoPop from '../components/infoPop';
 import '../firebase';
 import * as firebase from 'firebase';
 
+let db = firebase.firestore();
+
 export default class Registration extends React.Component {
     constructor(props){
         super(props);
@@ -46,10 +48,25 @@ export default class Registration extends React.Component {
     registrate = () => {
         if(this.state.password === this.state.secondPassword && this.state.email !== ''){
             firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(() => {
+            .then((data) => {
                 this.setState({
                     registered: true
                 })
+
+                let email = data.user.email;
+                let userID = data.user.uid;
+
+                db.collection("users").add({
+                    email,
+                    userID,
+                    role: ''
+                })
+                .then(function(docRef) {
+                    console.log("Document written with ID: ", docRef.id);
+                })
+                .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                });
             })    
             .catch(
                     (err) => {
