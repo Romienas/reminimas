@@ -2,11 +2,8 @@ import React from 'react';
 import Header from '../modules/header';
 import Input from '../components/inputs/input';
 import Button from '../components/button';
-
-// let firebase = require('firebase');
-// let firebaseui = require('firebaseui')
-
-// let ui = new firebaseui.auth.AuthUI(firebase.auth());
+import '../firebase';
+import * as firebase from 'firebase';
 
 export default class Registration extends React.Component {
     constructor(props){
@@ -42,6 +39,13 @@ export default class Registration extends React.Component {
 
     registrate = () => {
         if(this.state.password === this.state.secondPassword && this.state.email !== ''){
+            firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+                .catch(function(error) {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    console.log(errorCode, errorMessage);
+                });
+
             console.log('tinka')
         }else{
             console.log('netinka')
