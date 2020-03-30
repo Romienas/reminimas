@@ -7,6 +7,7 @@ $mainTextColor: #212121;
 $secodaryTextColor: #757575;
 $accentColor: #FFC107;
 $accentColorHover: rgb(245, 184, 3);
+$lightPrimaryColor: #C8E6C9;
 // COLORS END
 
 html, body, div, span, applet, object, iframe,
@@ -128,6 +129,43 @@ h2 {
 
 .popup__text {
 	color: $secodaryTextColor;
+}
+
+.info-pop {
+	position: absolute;
+	left: 0;
+	top:0;
+	right: 0;
+}
+
+.info-pop--close {
+	display: none;
+}
+
+@keyframes box-in {
+	from {margin-top: 0; opacity: 0;}
+	to {margin-top: 50px; opacity: 1;}
+}
+.info-pop__box {
+	margin: 50px auto;
+	width: fit-content;
+	border: 1px solid $borderColor;
+	background-color: $lightPrimaryColor;
+	animation-name: box-in;
+	animation-duration: 1s;
+	z-index: 10;
+}
+
+.info-pop__box-close {
+	position: relative;
+	float: right;
+	right: 10px;
+	top: 10px;
+	cursor: pointer;
+}
+
+.info-pop__text {
+	padding: 30px;
 }
 // COMPONENT END
 

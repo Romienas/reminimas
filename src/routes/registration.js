@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../modules/header';
 import Input from '../components/inputs/input';
 import Button from '../components/button';
+import InfoPop from '../components/infoPop';
 import '../firebase';
 import * as firebase from 'firebase';
 
@@ -11,7 +12,8 @@ export default class Registration extends React.Component {
         this.state = {
             email: '',
             password: '',
-            secondPassword: ''
+            secondPassword: '',
+            falseEmail: true
         }
 
         this.getEmail = this.getEmail.bind(this);
@@ -56,6 +58,7 @@ export default class Registration extends React.Component {
     render() {
         return(
             <div>
+                {this.state.falseEmail === true ? <InfoPop infoText='Blogai nurodytas el. pašto adresas' /> : null}
                 <Header />
                 <div className='registration'>
                     <div className='registration__box'>
