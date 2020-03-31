@@ -17,6 +17,7 @@ export default class Header extends React.Component {
     componentDidMount(){
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
+                console.log(user)
                 localStorage.setItem('userEmail', user.email);
                 localStorage.setItem('userID', user.uid);
                 this.setState({
@@ -26,6 +27,9 @@ export default class Header extends React.Component {
             } else {
             }
           });
+
+          let db = firebase.firestore();
+          
     }
  
 

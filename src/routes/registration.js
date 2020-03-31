@@ -56,13 +56,10 @@ export default class Registration extends React.Component {
                 let email = data.user.email;
                 let userID = data.user.uid;
 
-                db.collection("users").add({
+                db.collection("users").doc(userID).set({
                     email,
                     userID,
                     role: ''
-                })
-                .then(function(docRef) {
-                    console.log("Document written with ID: ", docRef.id);
                 })
                 .catch(function(error) {
                     console.error("Error adding document: ", error);
