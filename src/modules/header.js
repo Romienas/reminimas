@@ -35,8 +35,10 @@ export default class Header extends React.Component {
                         let data = doc.data();
                         data = JSON.stringify(data);
                         data = JSON.parse(data);
-                        //TODO
-                        console.log(data.role)
+                        
+                        if (data.role === 'admin'){
+                            localStorage.setItem('admin', "true")
+                        }
                     }
             })
         }
@@ -53,6 +55,7 @@ export default class Header extends React.Component {
         firebase.auth().signOut().then(() => {
             localStorage.removeItem('userEmail');
             localStorage.removeItem('userID');
+            localStorage.removeItem('admin');
             this.setState({
                 userLogged: false
             })
@@ -67,10 +70,18 @@ export default class Header extends React.Component {
                 <div>
                     <h1>Paveikslų rėminimas</h1>
                 </div>
+                { localStorage.getItem('userID') ?
+                    <div className='header__menu'>
+                        <ul>
+                            { localStorage.getItem('admin') === 'true' ? <li>Admin</li> : null }
+                            { localStorage.getItem('admin') === 'true' ? <li>Pridėti prekę</li> : null }
+                            <li>profilis</li>
+                        </ul>
+                    </div> : null }
                 <div>
                     { localStorage.getItem('userID') ? 
                         <div className='header__user'>
-                            <div>{localStorage.getItem('userEmail')}</div>
+                            <div>{ localStorage.getItem('userEmail') }</div>
                             <div className='header__signout' onClick={this.signOut}>Atsijungti</div>
                         </div> :
                         <div className='header__login' onClick={this.showPopUp}>Prisijungti</div>

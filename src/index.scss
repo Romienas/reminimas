@@ -177,6 +177,16 @@ h2 {
     height: 100px;
 }
 
+.header__menu ul li {
+	display: inline-block;
+	padding: 0 10px;
+	cursor: pointer;
+}
+
+.header__menu ul li:hover {
+	color: $accentColor;
+}
+
 .header__user {
 	display: flex;
 }

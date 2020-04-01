@@ -32,9 +32,12 @@ export default class Login extends React.Component {
     signIn = () => {
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then((user) => {
-            localStorage.setItem('userEmail', user.email);
-            localStorage.setItem('userID', user.uid);
-            
+            let authData = JSON.stringify(user.user);
+            authData = JSON.parse(authData);
+
+            localStorage.setItem('userEmail', authData.email);
+            localStorage.setItem('userID', authData.uid);
+
         })
         .catch((error) => {
             let errorCode = error.code;
