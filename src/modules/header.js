@@ -68,14 +68,20 @@ export default class Header extends React.Component {
         return(
             <div className='header'>
                 <div>
-                    <h1>Paveikslų rėminimas</h1>
+                    <h1><a href='/'>Paveikslų rėminimas</a></h1>
                 </div>
                 { localStorage.getItem('userID') ?
                     <div className='header__menu'>
                         <ul>
-                            { localStorage.getItem('admin') === 'true' ? <li>Admin</li> : null }
-                            { localStorage.getItem('admin') === 'true' ? <li>Pridėti prekę</li> : null }
-                            <li>profilis</li>
+                            { localStorage.getItem('admin') === 'true' ? 
+                                <li><a href='/admin'>admin</a></li> :
+                                 null 
+                            }
+                            { localStorage.getItem('admin') === 'true' ? 
+                                <li><a href='/add-product'>pridėti prekę</a></li> : 
+                                null 
+                            }
+                            <li><a href='/profile'>profilis</a></li>
                         </ul>
                     </div> : null }
                 <div>
