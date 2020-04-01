@@ -1,5 +1,5 @@
 import React from 'react';
-import PopUp from '../components/popUp';
+import Login from './login';
 import * as firebase from 'firebase';
 
 export default class Header extends React.Component {
@@ -17,19 +17,26 @@ export default class Header extends React.Component {
     componentDidMount(){
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                console.log(user)
                 localStorage.setItem('userEmail', user.email);
                 localStorage.setItem('userID', user.uid);
                 this.setState({
                     showPopUp: false,
                     userLogged: true
                 })
-            } else {
             }
           });
 
           let db = firebase.firestore();
-          
+          db.collection('users').doc(localStorage.getItem('userID')).get()
+          .then((doc) =>{
+                if(doc.exists){
+                    let data = doc.data();
+                    data = JSON.stringify(data);
+                    data = JSON.parse(data);
+                    //TODO
+                    console.log(data.role)
+                }
+          })
     }
  
 
@@ -68,7 +75,7 @@ export default class Header extends React.Component {
                     {this.state.showPopUp === false ? null :
                     <div>
                         <div className='header__close-popup' onClick={this.showPopUp}></div>
-                        <PopUp />
+                        <Login />
                     </div>
                     }
                 </div>

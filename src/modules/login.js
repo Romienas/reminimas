@@ -1,10 +1,10 @@
 import React from 'react';
-import Input from './inputs/input';
-import Button from './button';
+import Input from '../components/inputs/input';
+import Button from '../components/button';
 import * as firebase from 'firebase';
-import InfoPop from './infoPop';
+import InfoPop from '../components/infoPop';
 
-export default class PopUp extends React.Component {
+export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
