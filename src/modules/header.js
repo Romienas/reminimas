@@ -26,17 +26,20 @@ export default class Header extends React.Component {
             }
           });
 
-          let db = firebase.firestore();
-          db.collection('users').doc(localStorage.getItem('userID')).get()
-          .then((doc) =>{
-                if(doc.exists){
-                    let data = doc.data();
-                    data = JSON.stringify(data);
-                    data = JSON.parse(data);
-                    //TODO
-                    console.log(data.role)
-                }
-          })
+          let userID = localStorage.getItem('userID')
+          if(userID){
+            let db = firebase.firestore();
+            db.collection('users').doc(userID).get()
+            .then((doc) =>{
+                    if(doc.exists){
+                        let data = doc.data();
+                        data = JSON.stringify(data);
+                        data = JSON.parse(data);
+                        //TODO
+                        console.log(data.role)
+                    }
+            })
+        }
     }
  
 
