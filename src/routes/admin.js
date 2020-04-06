@@ -4,6 +4,8 @@ import * as firebase from 'firebase';
 import Input from '../components/inputs/input';
 import Button from '../components/button';
 import Loading from '../components/loading';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 let db = firebase.firestore();
 
@@ -80,6 +82,9 @@ export default class Admin extends React.Component {
                                 </ul>
                             </div>
                             <div className='admin__prodcat-add' onClick={this.handleInput}>
+                                <span>
+                                    <FontAwesomeIcon icon={faPlus} />
+                                </span>
                                 Pridėti kategoriją
                             </div>
                             { this.state.handleInput ?

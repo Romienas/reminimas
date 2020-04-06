@@ -304,6 +304,10 @@ h3 {
 
 .admin__prodcat-add {
 	cursor: pointer;
+
+	span {
+		padding-right: 10px;
+	}
 }
 
 .admin__prodcat-add:hover {
