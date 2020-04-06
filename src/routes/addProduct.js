@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../modules/header';
 import Input from '../components/inputs/input';
+// import * as firebase from 'firebase';
 
 export default class AddProduct extends React.Component {
     render() {
