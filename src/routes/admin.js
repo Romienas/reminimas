@@ -5,7 +5,7 @@ import Input from '../components/inputs/input';
 import Button from '../components/button';
 import Loading from '../components/loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 let db = firebase.firestore();
 
@@ -77,7 +77,13 @@ export default class Admin extends React.Component {
                             <div className='admin__prodcat-cat'>
                                 <ul>
                                     {this.state.categories.map( (cat, i) => {
-                                        return <li key={i}>{cat}</li>
+                                        return <li key={i}>
+                                                {cat} 
+                                                <FontAwesomeIcon 
+                                                    className='admin-prodcat-trash' 
+                                                    icon={faTrash} 
+                                                /> 
+                                            </li>
                                     })}
                                 </ul>
                             </div>

@@ -9,6 +9,7 @@ $accentColor: #FFC107;
 $accentColorHover: rgb(245, 184, 3);
 $lightPrimaryColor: #C8E6C9;
 $darkPrimaryColor: #388E3C;
+$dangerColor: #E64A19;
 // COLORS END
 
 html, body, div, span, applet, object, iframe,
@@ -307,9 +308,20 @@ h3 {
 
 	span {
 		padding-right: 10px;
+		color: $accentColor;
 	}
 }
 
 .admin__prodcat-add:hover {
 	color: $accentColor
+}
+
+.admin-prodcat-trash {
+	padding-left: 20px;
+	color: $secodaryTextColor;
+	cursor: pointer;
+}
+
+.admin-prodcat-trash:hover {
+	color: $dangerColor;
 }
