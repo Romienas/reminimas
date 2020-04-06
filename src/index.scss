@@ -316,6 +316,15 @@ h3 {
 	color: $accentColor
 }
 
+.admin__prodcat-input {
+	margin: 20px 0;
+}
+
+.admin__prodcat-button {
+	display: flex;
+	justify-content: flex-end;
+}
+
 .admin-prodcat-trash {
 	padding-left: 20px;
 	color: $secodaryTextColor;

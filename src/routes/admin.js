@@ -5,7 +5,7 @@ import Input from '../components/inputs/input';
 import Button from '../components/button';
 import Loading from '../components/loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 let db = firebase.firestore();
 
@@ -16,12 +16,14 @@ export default class Admin extends React.Component {
             categories: [],
             catInputVal: '',
             loaded: false,
-            handleInput: false
+            handleInput: false,
+            plusMinus: false
         }
 
         this.addCatInputVal = this.addCatInputVal.bind(this);
         this.addCategory = this.addCategory.bind(this);
         this.handleInput = this.handleInput.bind(this);
+        this.deleteCategory = this.deleteCategory.bind(this);
     }
 
     componentDidMount(){
@@ -44,6 +46,20 @@ export default class Admin extends React.Component {
         })
     }
 
+    deleteCategory = (cat) => {
+        let index = this.state.categories.indexOf(cat);
+        if( index > -1) {
+            this.state.categories.splice(index, 1);
+            this.setState({
+                categories: this.state.categories
+            },() => {
+                db.collection('categories').doc('cat').set({
+                    category: this.state.categories
+                })
+            })
+        }
+    }
+
     addCategory = () => {
         let categories = this.state.categories.concat(this.state.catInputVal);
         this.setState({
@@ -56,9 +72,11 @@ export default class Admin extends React.Component {
         
     }
 
+
     handleInput = () => {
         this.setState({
-            handleInput: !this.state.handleInput
+            handleInput: !this.state.handleInput,
+            plusMinus: !this.state.plusMinus
         })
     }
 
@@ -82,6 +100,7 @@ export default class Admin extends React.Component {
                                                 <FontAwesomeIcon 
                                                     className='admin-prodcat-trash' 
                                                     icon={faTrash} 
+                                                    onClick={() => this.deleteCategory(cat)}
                                                 /> 
                                             </li>
                                     })}
@@ -89,18 +108,20 @@ export default class Admin extends React.Component {
                             </div>
                             <div className='admin__prodcat-add' onClick={this.handleInput}>
                                 <span>
-                                    <FontAwesomeIcon icon={faPlus} />
+                                    <FontAwesomeIcon 
+                                        icon={this.state.plusMinus ? faMinus : faPlus} 
+                                    />
                                 </span>
                                 Pridėti kategoriją
                             </div>
                             { this.state.handleInput ?
                                 <div>
-                                <div>
-                                    <Input type='text' changeHandler={this.addCatInputVal} />
-                                </div>
-                                <div>
-                                    <Button buttonText='Pridėti' handleClick={this.addCategory} />
-                                </div>
+                                    <div className='admin__prodcat-input'>
+                                        <Input type='text' changeHandler={this.addCatInputVal} />
+                                    </div>
+                                    <div className='admin__prodcat-button'>
+                                        <Button buttonText='Pridėti' handleClick={this.addCategory} />
+                                    </div>
                             </div> : null}
                         </div>
                     </div>
