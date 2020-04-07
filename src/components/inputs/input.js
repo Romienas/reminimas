@@ -18,12 +18,19 @@ export default class Input extends React.Component {
     render(){
         return(
             <div className='input'>
+                {this.props.isMultiple ? <input 
+                    className='input__field' 
+                    type={this.props.type} 
+                    placeholder={this.props.placeholder}  
+                    onChange={this.handleChange}
+                    multiple
+                /> :
                 <input 
                     className='input__field' 
                     type={this.props.type} 
                     placeholder={this.props.placeholder}  
                     onChange={this.handleChange}
-                />
+                />}
             </div>
         )
     }
