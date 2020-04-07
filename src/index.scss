@@ -89,6 +89,13 @@ h3 {
  }
 // LAYOUT END
 
+// GLOBAL STYLES
+.global__title {
+	margin: 30px 0 40px 0;
+	font-weight: 700;
+}
+//GLOBAL STYLES END
+
 //COMPONENT
  .input {
 	 border: 1px solid $borderColor;
@@ -279,12 +286,6 @@ h3 {
 	padding: 30px;
 }
 
-
-.admin__title {
-	margin: 30px 0 40px 0;
-	font-weight: 700;
-}
-
 .admin__prodcat {
 	width: 300px;
 	border: 1px solid $borderColor;
@@ -333,4 +334,17 @@ h3 {
 
 .admin-prodcat-trash:hover {
 	color: $dangerColor;
+}
+
+.addProduct__box {
+	width: 300px;
+	margin: 0 auto;
+	border: 1px solid $borderColor;
+}
+.addProduct__box-padding {
+	padding: 30px;
+}
+
+.addProduct__inputs {
+	padding-bottom: 10px;
 }

@@ -86,7 +86,7 @@ export default class Admin extends React.Component {
                 <Header />
                 {this.state.loaded === false ? <Loading /> : null}
                 <div className='amdin'>
-                    <div className='admin__title'><h2>Valdymo pultas</h2></div>
+                    <div className='global__title'><h2>Valdymo pultas</h2></div>
                     <div className='admin__prodcat'>
                         <div className='admin__padding'>
                             <div className='admin__prodcat-title'>
