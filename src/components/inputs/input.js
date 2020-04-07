@@ -8,7 +8,11 @@ export default class Input extends React.Component {
     }
 
     handleChange = (e) => {
-        this.props.changeHandler(e.target.value)
+        if(this.props.isFile){
+            this.props.changeHandler(e.target.files)
+        }else{
+            this.props.changeHandler(e.target.value)
+        }
     }
 
     render(){
