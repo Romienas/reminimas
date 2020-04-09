@@ -62,7 +62,7 @@ input {
 	border: none;
 }
 
-textarea:focus, input:focus{
+textarea:focus, input:focus, select:focus{
     outline: none;
 }
 
@@ -81,6 +81,15 @@ h2 {
 
 h3 {
 	font-size: 20px;
+}
+
+select {
+	border: none;
+	width: 200px;
+
+	option {
+		width: 200px;
+	}
 }
 
 // LAYOUT
@@ -201,6 +210,15 @@ h3 {
 	animation-name: loading;
 	animation-duration: 1s;
 	animation-iteration-count: infinite;
+}
+
+.select{
+	border:1px solid $borderColor;
+}
+
+.select__field {
+	width: 200px;
+	padding: 10px;
 }
 // COMPONENT END
 
