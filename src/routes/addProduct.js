@@ -3,6 +3,7 @@ import Header from '../modules/header';
 import Input from '../components/inputs/input';
 import Loading from '../components/loading'
 import Button from '../components/button';
+import Select from '../components/select';
 import * as firebase from 'firebase';
 
 let db = firebase.firestore();
@@ -72,6 +73,10 @@ export default class AddProduct extends React.Component {
         })
     }
 
+    getSelectValue = (val) => {
+        console.log(val)
+    }
+
     submitProduct = () => {
         this.setState({
             loaded: false
@@ -138,6 +143,13 @@ export default class AddProduct extends React.Component {
                                     type='number' 
                                     placeholder='Bageto plotis' 
                                     changeHandler={this.getProductWidth}    
+                                />
+                            </div>
+                            <div className='addProduct__inputs'>
+                                <Select 
+                                    selectArr={this.state.categories}
+                                    handleSelect={this.getSelectValue} 
+                                    selectTxt='Pasirinkite kategoriją'    
                                 />
                             </div>
                             <div>
