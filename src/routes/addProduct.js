@@ -2,9 +2,11 @@ import React from 'react';
 import Header from '../modules/header';
 import Input from '../components/inputs/input';
 import Loading from '../components/loading'
+import Button from '../components/button';
 import * as firebase from 'firebase';
 
 let db = firebase.firestore();
+let storage = firebase.storage();
 
 export default class AddProduct extends React.Component {
     constructor(props) {
@@ -15,13 +17,15 @@ export default class AddProduct extends React.Component {
             productName: '',
             productPrice: 0,
             productHeight: 0,
-            productWidth: 0
+            productWidth: 0,
+            productImages: []
         }
 
         this.getProductName = this.getProductName.bind(this);
         this.getProductPrice = this.getProductPrice.bind(this);
         this.getProductHeight = this.getProductHeight.bind(this);
         this.getProductWidth = this.getProductWidth.bind(this);
+        this.submitProduct = this.submitProduct.bind(this);
     }
 
     componentDidMount(){
@@ -61,6 +65,31 @@ export default class AddProduct extends React.Component {
             productWidth
         })
     }
+
+    getProductImages = (productImages) => {
+        this.setState({
+            productImages
+        })
+    }
+
+    submitProduct = () => {
+        this.setState({
+            loaded: false
+        })
+
+        let images = this.state.productImages
+
+        for(let i = 0; i < images.length; i++) {
+            let productName = images[i].name;
+            let sotrageRef = storage.ref('/images/' + productName);
+            sotrageRef.put(images[i])
+        }
+        this.setState({
+            loaded: true,
+            productImages: []
+        })
+    }
+
     render() {
         return(
             <div>
@@ -78,7 +107,14 @@ export default class AddProduct extends React.Component {
                                 />
                             </div>
                             <div className='addProduct__inputs'>
-                                <Input className='addProduct__inputs' type='url' placeholder='Nuotraukos URL' />
+                                <Input 
+                                    className='addProduct__inputs' 
+                                    type='file' 
+                                    placeholder='Nuotraukos URL' 
+                                    changeHandler={this.getProductImages}
+                                    isFile={true}
+                                    isMultiple={true}
+                                />
                             </div>
                             <div className='addProduct__inputs'>
                                 <Input 
@@ -103,6 +139,9 @@ export default class AddProduct extends React.Component {
                                     placeholder='Bageto plotis' 
                                     changeHandler={this.getProductWidth}    
                                 />
+                            </div>
+                            <div>
+                                <Button buttonText='Pridėti' handleClick={this.submitProduct} />
                             </div>
                         </div>
                     </div>
