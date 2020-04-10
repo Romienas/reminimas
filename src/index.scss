@@ -300,29 +300,46 @@ select {
 	width: fit-content;
 }
 
+.admin__container {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
 .admin__padding {
 	padding: 30px;
+}
+
+.admin__title {
+	font-weight: 700;
+	color: $darkPrimaryColor;
+}
+
+.admin__trash {
+	padding-left: 20px;
+	color: $secodaryTextColor;
+	cursor: pointer;
+}
+
+.admin__trash:hover {
+	color: $dangerColor;
 }
 
 .admin__prodcat {
 	width: 300px;
 	border: 1px solid $borderColor;
+	margin: 10px;
 }
 
-.admin__prodcat-title {
-	font-weight: 700;
-	color: $darkPrimaryColor;
-}
-
-.admin__prodcat-cat {
+.admin__categories {
 	margin: 30px 10px;
+
+	li {
+		margin-bottom: 10px;
+	}
 }
 
-.admin__prodcat-cat li {
-	margin-bottom: 10px;
-}
-
-.admin__prodcat-add {
+.admin__add-category {
 	cursor: pointer;
 
 	span {
@@ -331,7 +348,7 @@ select {
 	}
 }
 
-.admin__prodcat-add:hover {
+.admin__add-category:hover {
 	color: $accentColor
 }
 
@@ -342,16 +359,6 @@ select {
 .admin__prodcat-button {
 	display: flex;
 	justify-content: flex-end;
-}
-
-.admin-prodcat-trash {
-	padding-left: 20px;
-	color: $secodaryTextColor;
-	cursor: pointer;
-}
-
-.admin-prodcat-trash:hover {
-	color: $dangerColor;
 }
 
 .addProduct__box {
@@ -365,4 +372,11 @@ select {
 
 .addProduct__inputs {
 	padding-bottom: 10px;
+}
+
+
+.admin__prodColor {
+	border: 1px solid $borderColor;
+	width: 300px;
+	margin: 10px;
 }
