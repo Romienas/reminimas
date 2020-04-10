@@ -78,7 +78,7 @@ export default class Header extends React.Component {
                                  null 
                             }
                             { localStorage.getItem('admin') === 'true' ? 
-                                <li><a href='/add-product'>pridėti prekę</a></li> : 
+                                <li><a href='/add-product'>prekės</a></li> : 
                                 null 
                             }
                             <li><a href='/profile'>profilis</a></li>
