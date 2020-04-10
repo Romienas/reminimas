@@ -374,6 +374,11 @@ select {
 	padding-bottom: 10px;
 }
 
+.addProduct__submit {
+	display: flex;
+	justify-content: flex-end;
+}
+
 
 .admin__prodColor {
 	border: 1px solid $borderColor;

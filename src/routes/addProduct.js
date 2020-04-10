@@ -4,6 +4,7 @@ import Input from '../components/inputs/input';
 import Loading from '../components/loading'
 import Button from '../components/button';
 import Select from '../components/select';
+import InfoPop from '../components/infoPop';
 import * as firebase from 'firebase';
 
 let db = firebase.firestore();
@@ -19,7 +20,14 @@ export default class AddProduct extends React.Component {
             productPrice: 0,
             productHeight: 0,
             productWidth: 0,
-            productImages: []
+            productImages: [],
+            colors: [],
+            selectVal: '',
+            selectColorVal: '',
+            warehouseStatusArr: ['Yra', 'Nėra'],
+            warehouseStatusVal: true,
+            error: false,
+            productId: ''
         }
 
         this.getProductName = this.getProductName.bind(this);
@@ -27,9 +35,13 @@ export default class AddProduct extends React.Component {
         this.getProductHeight = this.getProductHeight.bind(this);
         this.getProductWidth = this.getProductWidth.bind(this);
         this.submitProduct = this.submitProduct.bind(this);
+        this.getSelectValue = this.getSelectValue.bind(this);
+        this.getwarehouseStatusValue = this.getwarehouseStatusValue.bind(this);
+        this.getProductId = this.getProductId.bind(this);
     }
 
     componentDidMount(){
+        //GET categories array
         db.collection('categories').doc('cat').get()
         .then(doc => {
             let data = doc.data();
@@ -38,6 +50,19 @@ export default class AddProduct extends React.Component {
 
             this.setState({
                 categories: data.category,
+                loaded: true
+            })
+        })
+
+        //GET colors array
+        db.collection('categories').doc('colors').get()
+        .then(doc => {
+            let data = doc.data();
+            data = JSON.stringify(data);
+            data = JSON.parse(data);
+
+            this.setState({
+                colors: data.colors,
                 loaded: true
             })
         })
@@ -73,8 +98,34 @@ export default class AddProduct extends React.Component {
         })
     }
 
-    getSelectValue = (val) => {
-        console.log(val)
+    getSelectValue = (selectVal) => {
+        this.setState({
+            selectVal
+        })
+    }
+
+    getSelectColorValue = (selectColorVal) => {
+        this.setState({
+            selectColorVal
+        })
+    }
+
+    getwarehouseStatusValue = (val) => {
+        if (val === 'Yra') {
+            this.setState({
+                warehouseStatusVal: true
+            })
+        } else {
+            this.setState({
+                warehouseStatusVal: false
+            })
+        }
+    }
+
+    getProductId = (productId) => {
+        this.setState({
+            productId
+        })
     }
 
     submitProduct = () => {
@@ -82,6 +133,54 @@ export default class AddProduct extends React.Component {
             loaded: false
         })
 
+        if (
+            this.state.productName === '' || 
+            this.state.productImages === [] ||
+            this.state.productPrice === 0 ||
+            this.state.productHeight === 0 ||
+            this.state.productWidth === 0 ||
+            this.state.selectVal === '' ||
+            this.state.selectColorVal === '' ||
+            this.state.productId === ''
+        ){
+            this.setState({
+                error: true
+            })
+        } else {
+            let imgArr = [];
+            for (let i = 0; i < this.state.productImages.length; i++) {
+                imgArr.push(this.state.productImages[i].name) 
+            }
+
+            // ADD product to database
+            db.collection('products').doc(this.state.productId).set({
+                productName: this.state.productName,
+                id: this.state.productId,
+                images: imgArr,
+                price: this.state.productPrice,
+                height: this.state.productHeight,
+                width: this.state.productWidth,
+                category: this.state.selectVal,
+                color: this.state.selectColorVal,
+                warehouse: this.state.warehouseStatusVal
+            })
+            .then(() => {
+                this.setState({
+                    productName: '', 
+                    productImages: [],
+                    productPrice: 0,
+                    productHeight: 0,
+                    productWidth: 0,
+                    selectVal: '',
+                    selectColorVal: '',
+                    productId: '',
+                    error: false
+                })
+            })
+            .catch(err => {console.log(err)})
+        }
+
+        //ADD images to storage
         let images = this.state.productImages
 
         for(let i = 0; i < images.length; i++) {
@@ -89,6 +188,7 @@ export default class AddProduct extends React.Component {
             let sotrageRef = storage.ref('/images/' + productName);
             sotrageRef.put(images[i])
         }
+
         this.setState({
             loaded: true,
             productImages: []
@@ -100,6 +200,7 @@ export default class AddProduct extends React.Component {
             <div>
                 <Header />
                 {this.state.loaded ? null : <Loading />}
+                {this.state.error ? <InfoPop infoText='Užpildykite visus laukus' /> : null}
                 <div className='addProduct'>
                     <div className='global__title'><h2>Produktų valdymas</h2></div>
                     <div className='addProduct__box'>
@@ -113,9 +214,15 @@ export default class AddProduct extends React.Component {
                             </div>
                             <div className='addProduct__inputs'>
                                 <Input 
+                                    type='text' 
+                                    placeholder='Prekės kodas' 
+                                    changeHandler={this.getProductId} 
+                                />
+                            </div>
+                            <div className='addProduct__inputs'>
+                                <Input 
                                     className='addProduct__inputs' 
                                     type='file' 
-                                    placeholder='Nuotraukos URL' 
                                     changeHandler={this.getProductImages}
                                     isFile={true}
                                     isMultiple={true}
@@ -133,7 +240,7 @@ export default class AddProduct extends React.Component {
                                 <Input 
                                     className='addProduct__inputs' 
                                     type='number' 
-                                    placeholder='Bageto aukštis' 
+                                    placeholder='Bageto aukštis mm' 
                                     changeHandler={this.getProductHeight}
                                 />
                             </div>
@@ -141,7 +248,7 @@ export default class AddProduct extends React.Component {
                                 <Input 
                                     className='addProduct__inputs' 
                                     type='number' 
-                                    placeholder='Bageto plotis' 
+                                    placeholder='Bageto plotis mm' 
                                     changeHandler={this.getProductWidth}    
                                 />
                             </div>
@@ -152,7 +259,21 @@ export default class AddProduct extends React.Component {
                                     selectTxt='Pasirinkite kategoriją'    
                                 />
                             </div>
-                            <div>
+                            <div className='addProduct__inputs'>
+                                <Select 
+                                    selectArr={this.state.colors}
+                                    handleSelect={this.getSelectColorValue} 
+                                    selectTxt='Pasirinkite spalvą'    
+                                />
+                            </div>
+                            <div className='addProduct__inputs'>
+                                <Select 
+                                    selectArr={this.state.warehouseStatusArr}
+                                    handleSelect={this.getwarehouseStatusValue} 
+                                    selectTxt='Sandėlio statusas'    
+                                />
+                            </div>
+                            <div className='addProduct__submit'>
                                 <Button buttonText='Pridėti' handleClick={this.submitProduct} />
                             </div>
                         </div>
