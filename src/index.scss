@@ -361,6 +361,12 @@ select {
 	justify-content: flex-end;
 }
 
+.admin__prodColor {
+	border: 1px solid $borderColor;
+	width: 300px;
+	margin: 10px;
+}
+
 .addProduct__box {
 	width: 300px;
 	margin: 0 auto;
@@ -379,9 +385,15 @@ select {
 	justify-content: flex-end;
 }
 
+.addProduct__showBox {
+	cursor: pointer;
 
-.admin__prodColor {
-	border: 1px solid $borderColor;
-	width: 300px;
-	margin: 10px;
+	span {
+		color:$accentColor;
+		padding-right: 10px;
+	}
+}
+
+.addProduct__showBox:hover {
+	color: $accentColor;
 }

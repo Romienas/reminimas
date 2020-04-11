@@ -5,7 +5,10 @@ import Loading from '../components/loading'
 import Button from '../components/button';
 import Select from '../components/select';
 import InfoPop from '../components/infoPop';
+import ProductList from '../modules/productList';
 import * as firebase from 'firebase';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 let db = firebase.firestore();
 let storage = firebase.storage();
@@ -27,7 +30,8 @@ export default class AddProduct extends React.Component {
             warehouseStatusArr: ['Yra', 'Nėra'],
             warehouseStatusVal: true,
             error: false,
-            productId: ''
+            productId: '',
+            showBox: false
         }
 
         this.getProductName = this.getProductName.bind(this);
@@ -38,6 +42,7 @@ export default class AddProduct extends React.Component {
         this.getSelectValue = this.getSelectValue.bind(this);
         this.getwarehouseStatusValue = this.getwarehouseStatusValue.bind(this);
         this.getProductId = this.getProductId.bind(this);
+        this.showBox = this.showBox.bind(this);
     }
 
     componentDidMount(){
@@ -65,6 +70,12 @@ export default class AddProduct extends React.Component {
                 colors: data.colors,
                 loaded: true
             })
+        })
+    }
+
+    showBox = () => {
+        this.setState({
+            showBox: !this.state.showBox
         })
     }
 
@@ -193,6 +204,8 @@ export default class AddProduct extends React.Component {
             loaded: true,
             productImages: []
         })
+
+        alert('Produktas pridėtas')
     }
 
     render() {
@@ -203,83 +216,90 @@ export default class AddProduct extends React.Component {
                 {this.state.error ? <InfoPop infoText='Užpildykite visus laukus' /> : null}
                 <div className='addProduct'>
                     <div className='global__title'><h2>Produktų valdymas</h2></div>
-                    <div className='addProduct__box'>
-                        <div className='addProduct__box-padding'>
-                            <div className='addProduct__inputs'>
-                                <Input 
-                                    type='text' 
-                                    placeholder='Prekės pavadinimas' 
-                                    changeHandler={this.getProductName} 
-                                />
-                            </div>
-                            <div className='addProduct__inputs'>
-                                <Input 
-                                    type='text' 
-                                    placeholder='Prekės kodas' 
-                                    changeHandler={this.getProductId} 
-                                />
-                            </div>
-                            <div className='addProduct__inputs'>
-                                <Input 
-                                    className='addProduct__inputs' 
-                                    type='file' 
-                                    changeHandler={this.getProductImages}
-                                    isFile={true}
-                                    isMultiple={true}
-                                />
-                            </div>
-                            <div className='addProduct__inputs'>
-                                <Input 
-                                    className='addProduct__inputs' 
-                                    type='number' 
-                                    placeholder='Metro kaina'
-                                    changeHandler={this.getProductPrice}
-                                />
-                            </div>
-                            <div className='addProduct__inputs'>
-                                <Input 
-                                    className='addProduct__inputs' 
-                                    type='number' 
-                                    placeholder='Bageto aukštis mm' 
-                                    changeHandler={this.getProductHeight}
-                                />
-                            </div>
-                            <div className='addProduct__inputs'>
-                                <Input 
-                                    className='addProduct__inputs' 
-                                    type='number' 
-                                    placeholder='Bageto plotis mm' 
-                                    changeHandler={this.getProductWidth}    
-                                />
-                            </div>
-                            <div className='addProduct__inputs'>
-                                <Select 
-                                    selectArr={this.state.categories}
-                                    handleSelect={this.getSelectValue} 
-                                    selectTxt='Pasirinkite kategoriją'    
-                                />
-                            </div>
-                            <div className='addProduct__inputs'>
-                                <Select 
-                                    selectArr={this.state.colors}
-                                    handleSelect={this.getSelectColorValue} 
-                                    selectTxt='Pasirinkite spalvą'    
-                                />
-                            </div>
-                            <div className='addProduct__inputs'>
-                                <Select 
-                                    selectArr={this.state.warehouseStatusArr}
-                                    handleSelect={this.getwarehouseStatusValue} 
-                                    selectTxt='Sandėlio statusas'    
-                                />
-                            </div>
-                            <div className='addProduct__submit'>
-                                <Button buttonText='Pridėti' handleClick={this.submitProduct} />
-                            </div>
-                        </div>
+                    <div className='addProduct__showBox' onClick={this.showBox}>
+                        <span>
+                            <FontAwesomeIcon icon={this.state.showBox ? faMinus : faPlus} />
+                        </span>
+                        Pridėti prekę
                     </div>
-                    
+                    {this.state.showBox ?
+                        <div className='addProduct__box'>
+                            <div className='addProduct__box-padding'>
+                                <div className='addProduct__inputs'>
+                                    <Input 
+                                        type='text' 
+                                        placeholder='Prekės pavadinimas' 
+                                        changeHandler={this.getProductName} 
+                                    />
+                                </div>
+                                <div className='addProduct__inputs'>
+                                    <Input 
+                                        type='text' 
+                                        placeholder='Prekės kodas' 
+                                        changeHandler={this.getProductId} 
+                                    />
+                                </div>
+                                <div className='addProduct__inputs'>
+                                    <Input 
+                                        className='addProduct__inputs' 
+                                        type='file' 
+                                        changeHandler={this.getProductImages}
+                                        isFile={true}
+                                        isMultiple={true}
+                                    />
+                                </div>
+                                <div className='addProduct__inputs'>
+                                    <Input 
+                                        className='addProduct__inputs' 
+                                        type='number' 
+                                        placeholder='Metro kaina'
+                                        changeHandler={this.getProductPrice}
+                                    />
+                                </div>
+                                <div className='addProduct__inputs'>
+                                    <Input 
+                                        className='addProduct__inputs' 
+                                        type='number' 
+                                        placeholder='Bageto aukštis mm' 
+                                        changeHandler={this.getProductHeight}
+                                    />
+                                </div>
+                                <div className='addProduct__inputs'>
+                                    <Input 
+                                        className='addProduct__inputs' 
+                                        type='number' 
+                                        placeholder='Bageto plotis mm' 
+                                        changeHandler={this.getProductWidth}    
+                                    />
+                                </div>
+                                <div className='addProduct__inputs'>
+                                    <Select 
+                                        selectArr={this.state.categories}
+                                        handleSelect={this.getSelectValue} 
+                                        selectTxt='Pasirinkite kategoriją'    
+                                    />
+                                </div>
+                                <div className='addProduct__inputs'>
+                                    <Select 
+                                        selectArr={this.state.colors}
+                                        handleSelect={this.getSelectColorValue} 
+                                        selectTxt='Pasirinkite spalvą'    
+                                    />
+                                </div>
+                                <div className='addProduct__inputs'>
+                                    <Select 
+                                        selectArr={this.state.warehouseStatusArr}
+                                        handleSelect={this.getwarehouseStatusValue} 
+                                        selectTxt='Sandėlio statusas'    
+                                    />
+                                </div>
+                                <div className='addProduct__submit'>
+                                    <Button buttonText='Pridėti' handleClick={this.submitProduct} />
+                                </div>
+                            </div>
+                        </div> : null }                  
                 </div>
+                <ProductList />
             </div>
         )
     }
