@@ -103,6 +103,16 @@ select {
 	margin: 30px 0 40px 0;
 	font-weight: 700;
 }
+
+.global__trash {
+	padding-left: 20px;
+	color: $secodaryTextColor;
+	cursor: pointer;
+}
+
+.global__trash:hover {
+	color: $dangerColor;
+}
 //GLOBAL STYLES END
 
 //COMPONENT
@@ -315,16 +325,6 @@ select {
 	color: $darkPrimaryColor;
 }
 
-.admin__trash {
-	padding-left: 20px;
-	color: $secodaryTextColor;
-	cursor: pointer;
-}
-
-.admin__trash:hover {
-	color: $dangerColor;
-}
-
 .admin__prodcat {
 	width: 300px;
 	border: 1px solid $borderColor;
@@ -400,4 +400,22 @@ select {
 
 .addProduct__showBox:hover {
 	color: $accentColor;
+}
+
+.productList {
+	width: 100%;
+
+	tr {
+		border-bottom: 1px solid $borderColor;
+	}
+	
+	th {
+		font-weight: 700;
+		padding-bottom: 5px;
+	}
+	
+	td {
+		text-align: center;
+		padding: 10px 0 5px 0;
+	}
 }

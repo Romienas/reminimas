@@ -157,7 +157,7 @@ export default class Admin extends React.Component {
                                             return <li key={i}>
                                                     {cat} 
                                                     <FontAwesomeIcon 
-                                                        className='admin__trash' 
+                                                        className='global__trash' 
                                                         icon={faTrash} 
                                                         onClick={() => this.deleteCategory(cat)}
                                                     /> 
