@@ -14,20 +14,17 @@ export default class ProductList extends React.Component {
         }
     }
 
-    componentDidMount(){
-        let productsArr = []
-        db.collection('products').get().then(snap => {
-            snap.forEach( doc => {
-                let data = doc.data();
-                data = JSON.stringify(data);
-                data = JSON.parse(data);
-                productsArr = productsArr.concat(data)
-            })
-
+    componentDidMount(){     
+        db.collection('products').onSnapshot((querySnapshot) => {
+            let productsArr = [];
+            querySnapshot.forEach((doc) => {
+                productsArr.push(doc.data());
+            });
+            console.log('sukure')
             this.setState({
                 productsArr
-            })
-        })
+            },() => console.log('pridejo'))
+          });
     }
 
     deleteProduct = (id) => {
