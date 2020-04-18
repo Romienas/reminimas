@@ -18,45 +18,6 @@ export default class List extends React.Component {
             productsArr: [],
         }
     }
-
-    // async componentDidMount() {
-    //     let productsArr = []
-    //     let productsData = await db.collection('products')
-    //         .get()
-    //         .then( list => {
-    //             let arr = []
-    //             list.forEach( doc => {
-    //                 arr.push(doc.data())
-    //             })
-    //             return productsArr = arr
-    //         })
-    //     console.log('productsArr', productsArr)
-
-        // let getImagesUrls = await productsArr.map( obj => {
-        //     let imgArr = []
-        //     console.log('obj', obj)
-        //     let imagesLength = obj.images
-        //     console.log('imagesLength', imagesLength)
-
-        //     obj.images.map( img => {
-        //         storageRef.child(`images/${img}`)
-        //         .getDownloadURL()
-        //         .then(url => {
-        //             console.log('url', url)
-        //             imgArr.push(url)
-        //         })
-        //         .catch(err => console.log('Getting image url ERROR', err))
-        //         // const returnImgArr = await Promise.all(imgUrls)
-        //         console.log('imgArr', imgArr)
-        //     })
-        //     const newObj = Object.assign(obj, {images: imgArr})
-        //     console.log('newObj', newObj.images[0])
-        //     // productsArr.push(newObj)
-        //     return newObj
-        // })
-
-        // console.log('getImagesUrls', getImagesUrls)
-    //   }
     
    componentDidMount() {
         this.setState({
@@ -107,6 +68,9 @@ export default class List extends React.Component {
                                         />
                                         <div className='list__category'>
                                             Kategorija: {product.category}
+                                        </div>
+                                        <div>
+                                            Spalva: {product.color}
                                         </div>
                                         <div className='list__price'>
                                             Kaina: {product.price} &euro;/m
