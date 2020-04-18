@@ -59,7 +59,6 @@ export default class List extends React.Component {
     //   }
     
    componentDidMount() {
-        console.log('didmount')
         this.setState({
             loaded: true
         })
@@ -69,7 +68,6 @@ export default class List extends React.Component {
                 let obj = doc.data();
                 productsArr.push(obj)
             })
-            console.log('product arr', productsArr)
             productsArr.forEach(data => {
                 storageRef.child(`images/${data.images[0]}`)
                 .getDownloadURL()
@@ -95,7 +93,6 @@ export default class List extends React.Component {
                 {this.state.loaded ? <Loading /> : null}
                 <div className='list'>
                     {this.state.productsArr.map((product, i) => {
-                        console.log('img', product.images[0])
                         return (
                             <div key={i}>
                                 <div className='list__box'>

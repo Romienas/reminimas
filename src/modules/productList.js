@@ -20,10 +20,9 @@ export default class ProductList extends React.Component {
             querySnapshot.forEach((doc) => {
                 productsArr.push(doc.data());
             });
-            console.log('sukure')
             this.setState({
                 productsArr
-            },() => console.log('pridejo'))
+            })
           });
     }
 
