@@ -423,9 +423,11 @@ select {
 .list {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .list__box {
+	width: 310px;
 	margin: 15px;
 	border: 1px solid $borderColor;
 }
@@ -435,8 +437,8 @@ select {
 }
 
 .list__image {
-	width: 300px;
-	min-height: 200px;
+	width: 250px;
+	margin: 30px 0;
 }
 
 .list__category {
