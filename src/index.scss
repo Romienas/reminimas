@@ -419,3 +419,37 @@ select {
 		padding: 10px 0 5px 0;
 	}
 }
+
+.list {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.list__box {
+	margin: 15px;
+	border: 1px solid $borderColor;
+}
+
+.list__padding {
+	padding: 30px;
+}
+
+.list__image {
+	width: 300px;
+	min-height: 200px;
+}
+
+.list__category {
+	margin-bottom: 10px;
+}
+
+.list__price {
+	padding: 10px 0;
+	font-size: 1.2em;;
+}
+
+.list__button {
+	padding-top: 10px;
+	display:flex;
+	justify-content: flex-end;
+}

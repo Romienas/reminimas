@@ -193,12 +193,12 @@ export default class AddProduct extends React.Component {
 
         //ADD images to storage
         let images = this.state.productImages
-
         for(let i = 0; i < images.length; i++) {
             let productName = images[i].name;
             let sotrageRef = storage.ref('/images/' + productName);
             sotrageRef.put(images[i])
         }
+        
 
         this.setState({
             loaded: true,
