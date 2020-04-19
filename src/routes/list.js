@@ -4,6 +4,7 @@ import Footer from '../modules/footer';
 import Loading from '../components/loading';
 import Button from '../components/button';
 import Select from '../components/select';
+import ZoomImage from '../components/zoomImage';
 import * as firebase from 'firebase'; 
 import '../firebase';
 
@@ -20,7 +21,8 @@ export default class List extends React.Component {
             categories: [],
             colors: [],
             selectedCategory: '',
-            selectedColor:''
+            selectedColor:'',
+            zoomImageUrl: ''
         }
 
         this.getProductsList = this.getProductsList.bind(this);
@@ -28,6 +30,7 @@ export default class List extends React.Component {
         this.handleColorsVal = this.handleColorsVal.bind(this);
         this.filterProducts = this.filterProducts.bind(this);
         this.clearFilter = this.clearFilter.bind(this);
+        this.closeZoom = this.closeZoom.bind(this);
     }
     
    componentDidMount() {
@@ -187,6 +190,18 @@ export default class List extends React.Component {
         this.getProductsList();
     }
 
+    zoomImage = (id) => {
+        this.setState({
+            zoomImageUrl: document.getElementById(id).src
+        })
+    }
+
+    closeZoom = (string) => {
+        this.setState({
+            zoomImageUrl: string
+        })
+    }
+
     productClick = () => {
         console.log('uzsakyti')
     }
@@ -195,6 +210,12 @@ export default class List extends React.Component {
     render() {
         return(
             <div>
+                {this.state.zoomImageUrl ? 
+                    <ZoomImage 
+                        imageUrl={this.state.zoomImageUrl}
+                        handleClick={this.closeZoom}
+                    /> :null
+                }
                 <Header />
                 {this.state.loaded ? <Loading /> : null}
                 <div className='list__filter'>
@@ -238,6 +259,7 @@ export default class List extends React.Component {
                                             className='list__image' 
                                             src={product.images[0]}
                                             alt={product.category} 
+                                            onClick={() => this.zoomImage(product.id)}
                                         />
                                         <div className='list__category'>
                                             Kategorija: {product.category}
