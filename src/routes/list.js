@@ -5,6 +5,7 @@ import Loading from '../components/loading';
 import Button from '../components/button';
 import Select from '../components/select';
 import ZoomImage from '../components/zoomImage';
+import OrderProduct from '../modules/orderProduct';
 import * as firebase from 'firebase'; 
 import '../firebase';
 
@@ -22,7 +23,8 @@ export default class List extends React.Component {
             colors: [],
             selectedCategory: '',
             selectedColor:'',
-            zoomImageUrl: ''
+            zoomImageUrl: '',
+            productInfo: ''
         }
 
         this.getProductsList = this.getProductsList.bind(this);
@@ -202,14 +204,28 @@ export default class List extends React.Component {
         })
     }
 
-    productClick = () => {
-        console.log('uzsakyti')
+    productClick = (id, price, productName, width) => {
+        const image = document.getElementById(id).src
+        this.setState({
+            productInfo: {
+                id,
+                price,
+                productName,
+                width,
+                image
+            }
+        })
     }
 
 
     render() {
         return(
             <div>
+                {this.state.productInfo ? 
+                    <OrderProduct 
+                        productObj={this.state.productInfo}
+                    /> : null
+                }
                 {this.state.zoomImageUrl ? 
                     <ZoomImage 
                         imageUrl={this.state.zoomImageUrl}
@@ -279,7 +295,12 @@ export default class List extends React.Component {
                                         <div className='list__button'>
                                             <Button 
                                                 buttonText='Užsakyti' 
-                                                handleClick={this.productClick}
+                                                handleClick={() => this.productClick(
+                                                    product.id,
+                                                    product.price,
+                                                    product.productName,
+                                                    product.width,
+                                                )}
                                             />
                                         </div>
                                     </div>

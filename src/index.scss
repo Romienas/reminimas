@@ -503,3 +503,44 @@ select {
 	display:flex;
 	justify-content: flex-end;
 }
+
+.orderProduct {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.orderProduct__box {
+	max-width: 700px;
+	background-color: #FFFFFF;
+}
+
+.orderProduct__box .global__title {
+	color: $darkPrimaryColor;
+}
+
+.orderProduct__padding {
+	padding: 30px
+}
+
+.orderProduct__header {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5em;
+
+	img {
+		width: 100px;
+		padding: 5px 10px;
+	}
+
+	div {
+		padding: 5px 10px;
+	}
+}
