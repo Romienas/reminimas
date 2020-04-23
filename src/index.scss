@@ -83,6 +83,10 @@ h3 {
 	font-size: 20px;
 }
 
+h4 {
+	font-size: 18px;
+}
+
 select {
 	border: none;
 	width: 200px;
@@ -385,6 +389,36 @@ select {
 	border: 1px solid $borderColor;
 	width: 300px;
 	margin: 10px;
+}
+
+.admin__price-ul{
+	margin-top: 20px;
+
+	li {
+		margin: 0 0 20px 5px;
+	}
+}
+
+.admin__price-ul li div {
+	margin-bottom: 10px;
+}
+
+.admin__price-ul-title {
+	font-weight: 700;
+}
+
+.admin__prices-edit {
+	color: $secodaryTextColor;
+	margin-left: 15px;
+	cursor: pointer;
+}
+
+.admin__prices-edit:hover {
+	color: $darkPrimaryColor;
+}
+
+.admin__prices-showInput {
+	display: none;
 }
 
 .addProduct {
