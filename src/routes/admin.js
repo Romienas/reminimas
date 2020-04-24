@@ -26,6 +26,7 @@ export default class Admin extends React.Component {
             colorInputVal:'',
             stiklaiPrices: [],
             priceVal: '',
+            descriptionVal: '',
             availableVal: true
         }
 
@@ -39,6 +40,7 @@ export default class Admin extends React.Component {
         this.editPriceValue = this.editPriceValue.bind(this);
         this.getPriceVal = this.getPriceVal.bind(this);
         this.getAvailableVal = this.getAvailableVal.bind(this);
+        this.getDescriptionVal = this.getDescriptionVal.bind(this);
         this.updatePriceVal = this.updatePriceVal.bind(this);
     }
 
@@ -75,7 +77,6 @@ export default class Admin extends React.Component {
             let data = doc.data();
             data = JSON.stringify(data);
             data = JSON.parse(data);
-            console.log(data)
             this.setState({
                 stiklaiPrices: data.stiklai,
                 loaded: true
@@ -217,6 +218,14 @@ export default class Admin extends React.Component {
 
         db.collection('prices').doc('stiklai').update({
             stiklai: array
+        }).then(() => {
+            this.setState({
+                loaded: true,
+                stiklaiPlusMinus: false,
+                priceVal: '',
+                descriptionVal: '',
+                availableVal: true
+            })
         })
     }
 
