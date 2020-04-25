@@ -365,6 +365,7 @@ select {
 
 .admin__add-category {
 	cursor: pointer;
+	margin-bottom: 10px;
 
 	span {
 		padding-right: 10px;
@@ -399,8 +400,8 @@ select {
 	}
 }
 
-.admin__price-ul li div {
-	margin-bottom: 10px;
+.admin__proces-liElements {
+	margin-top: 10px;
 }
 
 .admin__price-ul-title {
@@ -419,6 +420,22 @@ select {
 
 .admin__prices-showInput {
 	display: none;
+	margin-top: 10px;
+}
+
+.admin__prices-showInput .input__field {
+	width: 193px;
+}
+
+.admin__prices-selectBool {
+	border: 1px solid $borderColor;
+	padding: 10px;
+	width: 100%;
+}
+
+.admin__prices-submit {
+	display: flex;
+	justify-content: flex-end;
 }
 
 .addProduct {

@@ -22,9 +22,11 @@ export default class Admin extends React.Component {
             catPlusMinus: false,
             colorPlusMinus: false,
             stiklaiPlusMinus: false,
+            nugaraPlusMinus: false,
             colors: [],
             colorInputVal:'',
             stiklaiPrices: [],
+            nugaraPrices: [],
             priceVal: '',
             descriptionVal: '',
             availableVal: true
@@ -58,6 +60,7 @@ export default class Admin extends React.Component {
                 loaded: true
             })
         })
+
         //GET COLORS
         db.collection('categories').doc('colors').get()
         .then(doc => {
@@ -71,7 +74,7 @@ export default class Admin extends React.Component {
             })
         })
 
-        //GET PRICES
+        //GET STIKLAI PRICES
         db.collection('prices').doc('stiklai').get()
         .then(doc => {
             let data = doc.data();
@@ -79,6 +82,18 @@ export default class Admin extends React.Component {
             data = JSON.parse(data);
             this.setState({
                 stiklaiPrices: data.stiklai,
+                loaded: true
+            })
+        })
+
+        //GET STIKLAI PRICES
+        db.collection('prices').doc('nugara').get()
+        .then(doc => {
+            let data = doc.data();
+            data = JSON.stringify(data);
+            data = JSON.parse(data);
+            this.setState({
+                nugaraPrices: data.nugara,
                 loaded: true
             })
         })
@@ -137,6 +152,12 @@ export default class Admin extends React.Component {
         })
     }
 
+    showNugara = () => {
+        this.setState({
+            nugaraPlusMinus: !this.state.nugaraPlusMinus
+        })
+    }
+    
     getColorInputValue = (colorInputVal) => {
         this.setState({
             colorInputVal
@@ -222,6 +243,36 @@ export default class Admin extends React.Component {
             this.setState({
                 loaded: true,
                 stiklaiPlusMinus: false,
+                priceVal: '',
+                descriptionVal: '',
+                availableVal: true
+            })
+        })
+    }
+
+    updateNugaraVal = (idVal, productName) => {
+        this.setState({
+            loaded: false
+        })
+        let array = this.state.nugaraPrices
+        let index = array.findIndex(i => i.id === idVal)
+
+        let arrayItem = {
+            id: idVal,
+            available: this.state.availableVal,
+            description: this.state.descriptionVal,
+            name: productName,
+            price: this.state.priceVal
+        }
+
+        array.splice(index, 1, arrayItem)
+
+        db.collection('prices').doc('nugara').update({
+            nugara: array
+        }).then(() => {
+            this.setState({
+                loaded: true,
+                nugaraPlusMinus: false,
                 priceVal: '',
                 descriptionVal: '',
                 availableVal: true
@@ -344,7 +395,7 @@ export default class Admin extends React.Component {
                                                                     onClick={() => this.editPriceValue(prices.id)}
                                                                 />
                                                             </div>
-                                                            <div>
+                                                            <div className='admin__proces-liElements'>
                                                                 Kaina: {prices.price} &euro;/m&sup2;
                                                                 <div className='admin__prices-showInput'>
                                                                     <Input 
@@ -354,8 +405,11 @@ export default class Admin extends React.Component {
                                                                     />
                                                                 </div>
                                                             </div>
-                                                            <div>
-                                                                Aprašymas: {prices.description}
+                                                            <div className='admin__proces-liElements'>
+                                                                Aprašymas: 
+                                                                <div>
+                                                                    {prices.description}
+                                                                </div>
                                                                 <div className='admin__prices-showInput'>
                                                                     <Input 
                                                                         type='text'
@@ -364,20 +418,84 @@ export default class Admin extends React.Component {
                                                                     />
                                                                 </div>
                                                             </div>
-                                                            <div>
+                                                            <div className='admin__proces-liElements'>
                                                                 Rodomas: {prices.available ? 'Taip' : 'Ne'}
                                                                 <div className='admin__prices-showInput'>
-                                                                    <select onChange={this.getAvailableVal}>
+                                                                    <select className='admin__prices-selectBool' onChange={this.getAvailableVal}>
                                                                         <option value={true}>Taip</option>
                                                                         <option value={false}>Ne</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
-                                                            <div className='admin__prices-showInput'>
-                                                                <div>
+                                                            <div className='admin__prices-showInput admin__proces-liElements'>
+                                                                <div className='admin__prices-submit'>
                                                                     <Button 
                                                                         buttonText='Atnaujinti'
                                                                         handleClick={() => this.updatePriceVal(prices.id, prices.name)}
+                                                                    />   
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                            })}
+                                        </ul> : null 
+                                    }
+                                    <div className='admin__add-category' onClick={this.showNugara}>
+                                        <span>
+                                            <FontAwesomeIcon 
+                                                icon={this.state.nugaraPlusMinus ? faMinus : faPlus} 
+                                            />
+                                        </span>
+                                        Nugaros
+                                    </div>
+                                    {this.state.nugaraPlusMinus ? 
+                                        <ul className='admin__price-ul'>
+                                            {this.state.nugaraPrices.map((prices, i) => {
+                                                return <li key={i} id={prices.id}>
+                                                            <div className='admin__price-ul-title'>
+                                                                {prices.name} 
+                                                                <FontAwesomeIcon 
+                                                                    className='admin__prices-edit'
+                                                                    icon={faPen}
+                                                                    onClick={() => this.editPriceValue(prices.id)}
+                                                                />
+                                                            </div>
+                                                            <div className='admin__proces-liElements'>
+                                                                Kaina: {prices.price} &euro;/m&sup2;
+                                                                <div className='admin__prices-showInput'>
+                                                                    <Input 
+                                                                        type='number'
+                                                                        placeholder={prices.price}
+                                                                        changeHandler={this.getPriceVal}
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                            <div className='admin__proces-liElements'>
+                                                                Aprašymas: 
+                                                                <div>
+                                                                    {prices.description}
+                                                                </div>
+                                                                <div className='admin__prices-showInput'>
+                                                                    <Input 
+                                                                        type='text'
+                                                                        placeholder={prices.description}
+                                                                        changeHandler={this.getDescriptionVal}
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                            <div className='admin__proces-liElements'>
+                                                                Rodomas: {prices.available ? 'Taip' : 'Ne'}
+                                                                <div className='admin__prices-showInput'>
+                                                                    <select className='admin__prices-selectBool' onChange={this.getAvailableVal}>
+                                                                        <option value={true}>Taip</option>
+                                                                        <option value={false}>Ne</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div className='admin__prices-showInput admin__proces-liElements'>
+                                                                <div className='admin__prices-submit'>
+                                                                    <Button 
+                                                                        buttonText='Atnaujinti'
+                                                                        handleClick={() => this.updateNugaraVal(prices.id, prices.name)}
                                                                     />   
                                                                 </div>
                                                             </div>
