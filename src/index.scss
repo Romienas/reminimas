@@ -600,17 +600,28 @@ select {
 	padding: 30px
 }
 
+.orderProduct__gallery-mainImg {
+	max-width: 600px
+}
+
+#orderProduct__mainImg {
+	width: 100%;
+}
+
+.orderProduct__gallery-images {
+	img {
+		width: 100px;
+		margin: 5px 10px;
+		cursor: pointer;
+	}
+}
+
 .orderProduct__header {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 	font-size: 1.5em;
-
-	img {
-		width: 100px;
-		padding: 5px 10px;
-	}
 
 	div {
 		padding: 5px 10px;
