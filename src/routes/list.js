@@ -33,6 +33,7 @@ export default class List extends React.Component {
         this.filterProducts = this.filterProducts.bind(this);
         this.clearFilter = this.clearFilter.bind(this);
         this.closeZoom = this.closeZoom.bind(this);
+        this.closeOrder = this.closeOrder.bind(this);
     }
     
    componentDidMount() {
@@ -204,8 +205,8 @@ export default class List extends React.Component {
         })
     }
 
-    productClick = (id, price, productName, width) => {
-        const image = document.getElementById(id).src
+    productClick = (id, price, productName, width, image) => {
+        // const image = document.getElementById(id).src
         this.setState({
             productInfo: {
                 id,
@@ -217,6 +218,11 @@ export default class List extends React.Component {
         })
     }
 
+    closeOrder = (string) => {
+        this.setState({
+            productInfo: string
+        })
+    }
 
     render() {
         return(
@@ -224,6 +230,7 @@ export default class List extends React.Component {
                 {this.state.productInfo ? 
                     <OrderProduct 
                         productObj={this.state.productInfo}
+                        handleClick={this.closeOrder}
                     /> : null
                 }
                 {this.state.zoomImageUrl ? 
@@ -300,6 +307,7 @@ export default class List extends React.Component {
                                                     product.price,
                                                     product.productName,
                                                     product.width,
+                                                    product.images
                                                 )}
                                             />
                                         </div>

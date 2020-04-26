@@ -566,9 +566,30 @@ select {
 	background-color: rgba(0, 0, 0, 0.8);
 }
 
+.orderProduct__closeBackground {
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	z-index: -1;
+}
+
 .orderProduct__box {
 	max-width: 700px;
 	background-color: #FFFFFF;
+}
+
+.orderProduct__closeButton {
+	position: relative;
+	float: right;
+	right: 10px;
+	top: 10px;
+	color: $secodaryTextColor;
+	cursor: pointer;
+	font-size: 1.2em;
+}
+
+.orderProduct__closeButton:hover {
+	color: $mainTextColor;
 }
 
 .orderProduct__box .global__title {
