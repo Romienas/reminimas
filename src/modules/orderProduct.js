@@ -21,7 +21,10 @@ export default class OrderProduct extends React.Component {
             nugaraArr: [],
             selectedStiklai: '',
             stiklaiName: '',
-            stiklaiPrice: 0
+            stiklaiPrice: 0,
+            nugaraName: '',
+            nugaraPrice: 0,
+            commentVal: ''
         }
 
         this.getHeightVal = this.getHeightVal.bind(this)
@@ -104,6 +107,19 @@ export default class OrderProduct extends React.Component {
             stiklaiName
         })
     }
+    
+    getnugaraInputVal = (nugaraPrice, nugaraName) => {
+        this.setState({
+            nugaraPrice,
+            nugaraName
+        })
+    }
+
+    getCommentVal = (e) => {
+        this.setState({
+            commentVal: e.target.value
+        })
+    }
 
     render() {
         return(
@@ -172,6 +188,37 @@ export default class OrderProduct extends React.Component {
                             })}
                         </ul>
                         
+                        <div className='orderProduct__inputHeader'>
+                            Pasirinkite norimą nugarą:
+                        </div>
+                        <ul className='orderProduct__select'>
+                            {this.state.nugaraArr.map((item, i) => {
+                                return (
+                                    <li key={i}>
+                                        <label>
+                                            <input 
+                                                type='radio' 
+                                                id={item.name} 
+                                                name='nugara' 
+                                                value={item.price} 
+                                                onChange={() => this.getNugaraInputVal(item.price, item.name)}
+                                            />
+                                            {item.name}
+                                            <DescriptionPop description={item.description} />
+                                        </label>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+
+                        <div className='orderProduct__inputHeader'>
+                            Komentaras:
+                        </div>
+                        <textarea 
+                            className='orderProduct__comment'
+                            placeholder='Pateikite savo pageidavimus arba pastabas'
+                            onChange={this.getCommentVal}
+                        />
                     </div>
                 </div>
             </div>
