@@ -2,8 +2,9 @@ import React from 'react'
 import * as firebase from 'firebase'
 import '../firebase'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faWindowClose, faInfo } from '@fortawesome/free-solid-svg-icons'
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import Input from '../components/inputs/input'
+import DescriptionPop from '../components/desriptionPop'
 
 let db = firebase.firestore()
 let storage = firebase.storage()
@@ -164,7 +165,7 @@ export default class OrderProduct extends React.Component {
                                                 onChange={() => this.getStiklaiInputVal(item.price, item.name)}
                                             />
                                             {item.name}
-                                            <FontAwesomeIcon icon={faInfo} />
+                                            <DescriptionPop description={item.description} />
                                         </label>
                                     </li>
                                 )

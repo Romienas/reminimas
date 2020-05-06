@@ -260,6 +260,38 @@ select {
 		height: 80%;
 	}
 }
+
+@keyframes fadeInBox {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+
+.descriptionPop {
+	position: relative;
+	display: inline;
+	margin: 0 15px;
+	cursor: pointer;
+	color: $secodaryTextColor;
+
+	:hover {
+		color: $mainTextColor;
+	}
+}
+
+.descriptionPop__box {
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: #FFFFFF;
+	font-size: 0.9em;
+	line-height: 1.5;
+	padding: 10px;
+	width: 200px;
+	bottom: 15px;
+	left: 15px;
+	animation-name: fadeInBox;
+	animation-duration: 0.5s;
+}
+
 // COMPONENT END
 
 .header {
