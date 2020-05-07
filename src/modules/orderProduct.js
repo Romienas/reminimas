@@ -24,12 +24,10 @@ export default class OrderProduct extends React.Component {
             stiklaiPrice: 0,
             nugaraName: '',
             nugaraPrice: 0,
-            commentVal: ''
+            commentVal: '',
+            totalPrice: 0
         }
 
-        this.getHeightVal = this.getHeightVal.bind(this)
-        this.getWidthVal = this.getWidthVal.bind(this)
-        this.selectedStiklai = this.selectedStiklai.bind(this)
     }
 
     componentDidMount(){
@@ -75,6 +73,37 @@ export default class OrderProduct extends React.Component {
         })
     }
 
+
+    componentDidUpdate(prevProps, prevState) {
+        // Get frame price
+        let framePrice = (this.props.productObj.width/1000 * 4 + this.state.heightVal/100 + this.state.widthVal/100) * 2 * this.props.productObj.price
+        framePrice = Math.round(framePrice)
+        
+        //Get square meter
+        const sqM = this.state.heightVal * this.state.widthVal / 10000
+
+        //Get glass price
+        let glassPrice = this.state.stiklaiPrice * sqM
+        glassPrice = Math.round(glassPrice)
+
+        //Get back price
+        let backPrice = this.state.nugaraPrice * sqM
+        backPrice = Math.round(backPrice)
+
+        //Get total price
+        let total = framePrice + glassPrice + backPrice
+
+        if (total < 21) {
+            total++
+        }
+        
+        if(total !== prevState.totalPrice){
+            this.setState({
+                totalPrice: total
+            })
+        }
+    }            
+
     handleClick = () =>{
         this.props.handleClick('')
     }
@@ -108,7 +137,7 @@ export default class OrderProduct extends React.Component {
         })
     }
     
-    getnugaraInputVal = (nugaraPrice, nugaraName) => {
+    getNugaraInputVal = (nugaraPrice, nugaraName) => {
         this.setState({
             nugaraPrice,
             nugaraName
@@ -219,6 +248,10 @@ export default class OrderProduct extends React.Component {
                             placeholder='Pateikite savo pageidavimus arba pastabas'
                             onChange={this.getCommentVal}
                         />
+
+                        <div>
+                            Preliminari kaina: {this.state.totalPrice}
+                        </div>
                     </div>
                 </div>
             </div>
