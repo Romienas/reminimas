@@ -89,10 +89,16 @@ export default class OrderProduct extends React.Component {
         //Get glass price
         let glassPrice = this.state.stiklaiPrice * sqM
         glassPrice = Math.round(glassPrice)
+        if (glassPrice < 1 && glassPrice !== 0) {
+            glassPrice = 1
+        }
 
         //Get back price
         let backPrice = this.state.nugaraPrice * sqM
         backPrice = Math.round(backPrice)
+        if (backPrice < 1 && backPrice !== 0) {
+            backPrice = 1
+        }
 
         //Get total price
         let total = framePrice + glassPrice + backPrice
@@ -101,10 +107,12 @@ export default class OrderProduct extends React.Component {
             total++
         }
         
-        if(total !== prevState.totalPrice){
-            this.setState({
-                totalPrice: total
-            })
+        if (this.state.heightVal !== '' || this.state.widthVal !== '' ){
+            if(total !== prevState.totalPrice){
+                this.setState({
+                    totalPrice: total
+                })
+            }
         }
     }            
 
