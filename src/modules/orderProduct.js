@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import Input from '../components/inputs/input'
 import DescriptionPop from '../components/desriptionPop'
+import Button from '../components/button'
 
 let db = firebase.firestore()
 let storage = firebase.storage()
@@ -17,13 +18,16 @@ export default class OrderProduct extends React.Component {
         this.state = {
             heightVal:'',
             widthVal: '',
+            dimensionErr: false,
             stiklaiArr: [],
             nugaraArr: [],
             selectedStiklai: '',
             stiklaiName: '',
             stiklaiPrice: 0,
+            stiklaiErr: false,
             nugaraName: '',
             nugaraPrice: 0,
+            nugaraErr: false,
             commentVal: '',
             totalPrice: 0
         }
@@ -150,6 +154,40 @@ export default class OrderProduct extends React.Component {
         })
     }
 
+    addOrder = () => {
+        //Check is everything filled up
+        if (this.state.heightVal === '' || this.state.widthVal === ''){
+            this.setState({
+                dimensionErr: true
+            })
+        } else if (this.state.heightVal !== '' && this.state.widthVal !== ''){
+            this.setState({
+                dimensionErr: false
+            })
+        }
+
+        if (this.state.stiklaiName === '') {
+            this.setState({
+                stiklaiErr: true
+            })
+        } else {
+            this.setState({
+                stiklaiErr: false
+            })
+        }
+        
+        if (this.state.nugaraName === '') {
+            this.setState({
+                nugaraErr: true
+            })
+        } else {
+            this.setState({
+                nugaraErr: false
+            })
+        }
+
+    }
+
     render() {
         return(
             <div className='orderProduct' >
@@ -249,8 +287,24 @@ export default class OrderProduct extends React.Component {
                             onChange={this.getCommentVal}
                         />
 
-                        <div>
-                            Preliminari kaina: {this.state.totalPrice}
+                        <div className='orderProduct__totalPrice'>
+                            Preliminari kaina: {this.state.totalPrice} &euro;
+                        </div>
+                        <p className='orderProduct__totalPrice-note'>Tiksli kaina bus pasakyta įvertinus 
+                        gautus darbus ir papildomus pageidavimus.</p>
+                        <div className='orderProduct__error'> 
+                            {this.state.dimensionErr && <p>Įveskite išmatavimus</p>}
+                            {this.state.stiklaiErr && <p>Pažymėkite pageidaujamą stiklą</p>}
+                            {this.state.nugaraErr && <p>Pažymėkite pageidaujamą nugarėlę</p>}
+                        </div>
+                        <div className='orderProduct__order'>
+                            <div className='orderProduct__cancel-order' onClick={this.handleClick}>
+                                Atšaukti
+                            </div>
+                            <Button 
+                                buttonText='Užsakyti'
+                                handleClick={this.addOrder}
+                            />
                         </div>
                     </div>
                 </div>

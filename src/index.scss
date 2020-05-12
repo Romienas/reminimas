@@ -272,6 +272,7 @@ select {
 	margin: 0 15px;
 	cursor: pointer;
 	color: $secodaryTextColor;
+	font-size: 0.9em;
 
 	:hover {
 		color: $mainTextColor;
@@ -665,7 +666,7 @@ select {
 }
 
 .orderProduct__inputHeader{
-	margin-top: 20px;
+	margin-top: 30px;
 }
 
 .orderProduct__sizeInputs {
@@ -697,4 +698,38 @@ select {
 	height: 100px;
 	width: 100%;
 	margin-top: 10px;
+}
+
+.orderProduct__totalPrice {
+	margin: 30px;
+	font-size: 1.5em;
+}
+
+.orderProduct__totalPrice-note {
+	color: $secodaryTextColor;
+	margin-bottom: 20px;
+}
+
+.orderProduct__order {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-bottom: 30px;
+}
+
+.orderProduct__cancel-order {
+	margin: 0 20px;
+	cursor: pointer;
+}
+
+.orderProduct__cancel-order:hover {
+	color: $accentColor;
+}
+
+.orderProduct__error {
+	color: $dangerColor;
+
+	p {
+		margin: 5px 0;
+	}
 }
