@@ -2,7 +2,7 @@ import React from 'react'
 import * as firebase from 'firebase'
 import '../firebase'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import { faWindowClose, faExclamationCircle } from '@fortawesome/free-solid-svg-icons'
 import Input from '../components/inputs/input'
 import DescriptionPop from '../components/desriptionPop'
 import Button from '../components/button'
@@ -16,8 +16,8 @@ export default class OrderProduct extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            heightVal:'',
-            widthVal: '',
+            heightVal: 0,
+            widthVal: 0,
             dimensionErr: false,
             stiklaiArr: [],
             nugaraArr: [],
@@ -31,7 +31,6 @@ export default class OrderProduct extends React.Component {
             commentVal: '',
             totalPrice: 0
         }
-
     }
 
     componentDidMount(){
@@ -107,12 +106,12 @@ export default class OrderProduct extends React.Component {
             total++
         }
         
-        if (this.state.heightVal !== '' || this.state.widthVal !== '' ){
+        if (this.state.heightVal !== 0 || this.state.widthVal !== 0 ){
             if(total !== prevState.totalPrice){
                 this.setState({
                     totalPrice: total
                 })
-            }
+            } 
         }
     }            
 
@@ -164,11 +163,11 @@ export default class OrderProduct extends React.Component {
 
     addOrder = () => {
         //Check is everything filled up
-        if (this.state.heightVal === '' || this.state.widthVal === ''){
+        if (this.state.heightVal === '0' || this.state.widthVal === '0' || this.state.heightVal === 0 || this.state.widthVal === 0){
             this.setState({
                 dimensionErr: true
             })
-        } else if (this.state.heightVal !== '' && this.state.widthVal !== ''){
+        } else if (this.state.heightVal !== '0' && this.state.widthVal !== '0'){
             this.setState({
                 dimensionErr: false
             })
@@ -188,12 +187,45 @@ export default class OrderProduct extends React.Component {
             this.setState({
                 nugaraErr: true
             })
+            
         } else {
             this.setState({
                 nugaraErr: false
             })
         }
 
+        // Add data to database
+        setTimeout( () => {
+            if (this.state.dimensionErr === false || this.state.stiklaiErr === false || this.state.nugaraErr === false) {
+                let generatedArr = []
+                for (let i = 0; i < 6; i++){
+                    generatedArr.push(Math.floor(Math.random() * 9))
+                }
+                let generatedId = generatedArr.join('')
+                
+                let date = new Date()
+                let dd = String(date.getDate()).padStart(2, '0')
+                let mm = String(date.getMonth() + 1).padStart(2, '0')
+                let yyyy = String(date.getFullYear()) 
+                let hour = String(date.getHours()).padStart(2, '0')
+                let min = String(date.getMinutes()).padStart(2, '0')
+
+                const timeStamp = `${yyyy}-${mm}-${dd} ${hour}:${min}`
+                console.log(timeStamp)
+
+                console.log(generatedId)
+                db.collection('orders').doc(generatedId).set({
+                    back: this.state.nugaraName,
+                    comment: this.state.commentVal,
+                    date: timeStamp,
+                    glass: this.state.stiklaiName,
+                    order_id: generatedId,
+                    price: this.state.totalPrice,
+                    product: this.props.productObj.productName,
+                    user: localStorage.getItem('userID')
+                }).then(this.handleClick )
+            }
+        }, 500)
     }
 
     render() {
@@ -301,9 +333,9 @@ export default class OrderProduct extends React.Component {
                         <p className='orderProduct__totalPrice-note'>Tiksli kaina bus pasakyta įvertinus 
                         gautus darbus ir papildomus pageidavimus.</p>
                         <div className='orderProduct__error'> 
-                            {this.state.dimensionErr && <p>Įveskite išmatavimus</p>}
-                            {this.state.stiklaiErr && <p>Pažymėkite pageidaujamą stiklą</p>}
-                            {this.state.nugaraErr && <p>Pažymėkite pageidaujamą nugarėlę</p>}
+                            {this.state.dimensionErr && <p><FontAwesomeIcon icon={faExclamationCircle} /> Įveskite išmatavimus</p>}
+                            {this.state.stiklaiErr && <p><FontAwesomeIcon icon={faExclamationCircle} /> Pažymėkite pageidaujamą stiklą</p>}
+                            {this.state.nugaraErr && <p><FontAwesomeIcon icon={faExclamationCircle} /> Pažymėkite pageidaujamą nugarėlę</p>}
                         </div>
                         <div className='orderProduct__order'>
                             <div className='orderProduct__cancel-order' onClick={this.handleClick}>

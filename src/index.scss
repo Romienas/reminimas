@@ -728,8 +728,9 @@ select {
 
 .orderProduct__error {
 	color: $dangerColor;
+	font-size: 0.8em;
 
 	p {
-		margin: 5px 0;
+		margin: 10px 0;
 	}
 }
