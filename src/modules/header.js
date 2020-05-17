@@ -59,6 +59,7 @@ export default class Header extends React.Component {
             localStorage.removeItem('userEmail')
             localStorage.removeItem('userID')
             localStorage.removeItem('admin')
+            localStorage.removeItem('logged')
             this.setState({
                 userLogged: false
             })
