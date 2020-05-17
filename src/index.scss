@@ -829,6 +829,104 @@ select {
 	}
 }
 
+.profile__container {
+	display: flex;
+	justify-content: center;
+	height: 100%;
+}
+
+.profile__box {
+	border: 1px solid $borderColor;
+
+	li {
+		margin-bottom: 10px;
+	}
+
+	span {
+		font-weight: 700;
+		padding-right: 10px;
+	}
+}
+
+.profile__box-padding {
+	padding: 20px;
+}
+
+.profile__title {
+	font-weight: 700;
+	color: $darkPrimaryColor;
+	margin-bottom: 20px;
+}
+
+.profile__edit {
+	margin-top: 20px;
+	cursor: pointer;
+
+	span {
+		color: $accentColor;
+	}
+}
+
+.profile__edit:hover {
+	color: $accentColor;
+}
+
+.profile__inputs {
+	margin-top: 20px;
+}
+
+.profile__inputs-margin {
+	margin-bottom: 10px;
+}
+
+.profile__editButton {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.profile__deleteAcc {
+	color: $dangerColor;
+	cursor: pointer;
+	margin-top: 20px;
+}
+
+.profile__warning {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.profile__warning-box {
+	background-color: #FFFFFF;
+	width: 300px;
+
+	p {
+		margin: 30px;
+	}
+}
+
+.profile__warning-buttons {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 30px;
+}
+
+.profile__warning-buttons--yes {
+	cursor: pointer;
+	margin-right: 20px;
+}
+
+.profile__warning-buttons--yes:hover{
+	color: $dangerColor;
+}
+
 // MEDIA QUERIES
 
 @media only screen and (max-width: 800px) {

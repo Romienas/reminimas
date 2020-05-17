@@ -19,25 +19,25 @@ function App() {
           <Route path='/registration' exact>
             <Registration />
           </Route>
-            <ProtectedRoute path='/admin' component={Admin} />
-            <ProtectedRoute path='/add-product' component={AddProduct} />
+          <ProtectedRoute path='/admin' component={Admin} />
+          <ProtectedRoute path='/add-product' component={AddProduct} />
           <ProtectedRoute path='/profile' component={Profile} />
           <Route path='/*'>
             <FourZeroFour />
           </Route>
         </Switch> :
         <Switch>
-        <Route path='/' exact>
-          <List />
-        </Route>
-        <Route path='/registration' exact>
-          <Registration />
-        </Route>
-        <ProtectedRoute path='/profile' component={Profile} />
-        <Route path='/*'>
-          <FourZeroFour />
-        </Route>
-      </Switch>
+          <Route path='/' exact>
+            <List />
+          </Route>
+          <Route path='/registration' exact>
+            <Registration />
+          </Route>
+          <ProtectedRoute path='/profile' component={Profile} />
+          <Route path='/*'>
+            <FourZeroFour />
+          </Route>
+        </Switch>
       }
     </div>
   );

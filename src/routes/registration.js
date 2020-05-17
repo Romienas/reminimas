@@ -59,7 +59,10 @@ export default class Registration extends React.Component {
                 db.collection("users").doc(userID).set({
                     email,
                     userID,
-                    role: ''
+                    role: '',
+                    phone: '',
+                    name: '',
+                    surname: ''
                 })
                 .catch(function(error) {
                     console.error("Error adding document: ", error);
