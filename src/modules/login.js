@@ -37,6 +37,7 @@ export default class Login extends React.Component {
 
             localStorage.setItem('userEmail', authData.email);
             localStorage.setItem('userID', authData.uid);
+            localStorage.setItem('logged', 'true')
 
         })
         .catch((error) => {
