@@ -5,8 +5,9 @@ import logo from '../media/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import MobileMenu from './mobileMenu'
+import { withRouter } from 'react-router-dom'
 
-export default class Header extends React.Component {
+class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -55,14 +56,19 @@ export default class Header extends React.Component {
     }
 
     signOut = () => {
+        const {history} = this.props
         firebase.auth().signOut().then(() => {
             localStorage.removeItem('userEmail')
             localStorage.removeItem('userID')
             localStorage.removeItem('admin')
             localStorage.removeItem('logged')
+
             this.setState({
                 userLogged: false
             })
+
+            history.push('/')
+
           }).catch((error) => {
             console.log(error.code, error.message)
           });
@@ -143,3 +149,5 @@ export default class Header extends React.Component {
         )
     }
 }
+
+export default withRouter(Header)
