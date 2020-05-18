@@ -123,7 +123,7 @@ class Header extends React.Component {
                                                 <a href='/profile'>Profilis</a>
                                             </li>
                                             <li>
-                                                <a href='/'>Užsakymai</a>
+                                                <a href='/orders'>Užsakymai</a>
                                             </li>
                                         </ul>
                                     </div>
