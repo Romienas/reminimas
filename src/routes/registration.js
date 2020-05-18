@@ -1,14 +1,15 @@
-import React from 'react';
-import Header from '../modules/header';
-import Input from '../components/inputs/input';
-import Button from '../components/button';
-import InfoPop from '../components/infoPop';
-import '../firebase';
-import * as firebase from 'firebase';
+import React from 'react'
+import Header from '../modules/header'
+import Input from '../components/inputs/input'
+import Button from '../components/button'
+import InfoPop from '../components/infoPop'
+import '../firebase'
+import * as firebase from 'firebase'
+import { withRouter } from 'react-router-dom'
 
-let db = firebase.firestore();
+let db = firebase.firestore()
 
-export default class Registration extends React.Component {
+class Registration extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -21,10 +22,6 @@ export default class Registration extends React.Component {
             registered: false
         }
 
-        this.getEmail = this.getEmail.bind(this);
-        this.getPassword = this.getPassword.bind(this);
-        this.registrate = this.registrate.bind(this);
-        this.falseEmail = this.falseEmail.bind(this);
     }
 
     getEmail = (email) => {
@@ -53,8 +50,10 @@ export default class Registration extends React.Component {
                     registered: true
                 })
 
-                let email = data.user.email;
-                let userID = data.user.uid;
+                let email = data.user.email
+                let userID = data.user.uid
+                localStorage.removeItem('userID')
+                localStorage.removeItem('userEmail')
 
                 db.collection("users").doc(userID).set({
                     email,
@@ -63,6 +62,9 @@ export default class Registration extends React.Component {
                     phone: '',
                     name: '',
                     surname: ''
+                }).then(() => {
+                    const {history} = this.props
+                    setTimeout(()=> history.push('/'), 1000)
                 })
                 .catch(function(error) {
                     console.error("Error adding document: ", error);
@@ -70,10 +72,10 @@ export default class Registration extends React.Component {
             })    
             .catch(
                     (err) => {
-                        var errorCode = err.code;
-                        var errorMessage = err.message;
+                        var errorCode = err.code
+                        var errorMessage = err.message
 
-                        console.log(errorCode, errorMessage);
+                        console.log(errorCode, errorMessage)
                         if(errorCode === 'auth/invalid-email'){
                             this.setState({
                                 falseEmail: true
@@ -139,3 +141,5 @@ export default class Registration extends React.Component {
         )
     }
 }
+
+export default withRouter(Registration)
