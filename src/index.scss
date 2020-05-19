@@ -564,6 +564,7 @@ select {
 
 .productList {
 	width: 100%;
+	overflow-x: auto;
 
 	tr {
 		border-bottom: 1px solid $borderColor;
