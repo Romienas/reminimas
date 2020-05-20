@@ -30,10 +30,9 @@ export default class Orders extends React.Component {
                 data = JSON.parse(data)
                 ordersArr.push(data)
             })
-            //TODO
-            console.log(ordersArr)
             this.setState({
-                loading: false
+                loading: false,
+                ordersArr
             })
         })
         .catch(err => console.log('Get user orders error: ', err))
@@ -44,7 +43,35 @@ export default class Orders extends React.Component {
             <div>
                 <Header />
                     {this.state.loading && <Loading />}
-                
+                    <div className='order'>
+                        <div className='global__title'><h2>Mano užsakymai</h2></div>
+                        <div>
+                            <table className='order__list'>
+                                <tbody>
+                                    <tr>
+                                        <th>Užsakymo nr.</th>
+                                        <th>Data</th>
+                                        <th>Rėmas</th>
+                                        <th>Stiklas</th>
+                                        <th>Nugara</th>
+                                        <th>Kaina</th>
+                                    </tr>
+                                    {this.state.ordersArr.map((item, i) => {
+                                        return (
+                                            <tr key={i}>
+                                                <td>{item.order_id}</td>
+                                                <td>{item.date}</td>
+                                                <td>{item.product}</td>
+                                                <td>{item.glass}</td>
+                                                <td>{item.back}</td>
+                                                <td>{item.price}</td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 <Footer />
             </div>
         )

@@ -928,6 +928,25 @@ select {
 	color: $dangerColor;
 }
 
+.order__list {
+	width: 100%;
+	overflow-x: auto;
+
+	th {
+		font-weight: 700;
+		padding-bottom: 5px;
+	}
+	
+	td {
+		text-align: center;
+		padding: 10px 0 5px 0;
+	}
+
+	tr {
+		border-bottom: 1px solid $borderColor;
+	}
+}
+
 // MEDIA QUERIES
 
 @media only screen and (max-width: 800px) {
