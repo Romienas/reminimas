@@ -947,6 +947,23 @@ select {
 	}
 }
 
+.adminOrders__list {
+	display: flex;
+	justify-content: center;
+}
+
+.adminOrders__list-item {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 10px 0;
+	border-bottom: 1px solid $borderColor;
+	width: fit-content;
+	
+	div {
+		margin-right: 10px;
+	}
+}
+
 // MEDIA QUERIES
 
 @media only screen and (max-width: 800px) {
