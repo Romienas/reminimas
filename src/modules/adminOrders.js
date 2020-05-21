@@ -3,11 +3,21 @@ import * as firebase from 'firebase'
 
 let db = firebase.firestore()
 
+const OrderDetail = () => {
+    return (
+        <div className='orderDetail'>
+
+        </div>
+    )
+}
+
 export default class AdminOrders extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            ordersArr: []
+            ordersArr: [],
+            orderDetail: false,
+            orderId: ''
         }
     }
 
@@ -37,14 +47,28 @@ export default class AdminOrders extends React.Component {
     render(){
         return(
             <div>
+                {this.state.orderDetail && 
+                    <OrderDetail 
+                        order-id={this.state.orderId}
+                    />
+                }
                 <div className='admin__title'>
                     <h3>Užsakymų valdymas</h3>
                 </div>
                 <div className='adminOrders__list'>
                     <div>
-                        {this.state.ordersArr.map((item, i) => {
+                        {this.state.ordersArr.map((item) => {
                             return (
-                                <div key={i} className='adminOrders__list-item'>
+                                <div 
+                                    key={item.order_id} 
+                                    className='adminOrders__list-item'
+                                    onClick={ () => {
+                                        this.setState({
+                                            orderDetail: !this.state.orderDetail,
+                                            orderId: item.order_id
+                                        })
+                                    }}
+                                >
                                     <div>
                                         {item.order_id}
                                     </div>

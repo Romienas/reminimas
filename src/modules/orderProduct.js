@@ -222,7 +222,8 @@ export default class OrderProduct extends React.Component {
                     order_id: generatedId,
                     price: this.state.totalPrice,
                     product: this.props.productObj.productName,
-                    user: localStorage.getItem('userID')
+                    user: localStorage.getItem('userID'),
+                    done: false
                 }).then(this.handleClick )
             }
         }, 500)
