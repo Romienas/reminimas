@@ -1,15 +1,8 @@
 import React from 'react'
 import * as firebase from 'firebase'
+import OrderDetail from '../components/orderDetail'
 
 let db = firebase.firestore()
-
-const OrderDetail = () => {
-    return (
-        <div className='orderDetail'>
-
-        </div>
-    )
-}
 
 export default class AdminOrders extends React.Component {
     constructor(props) {
@@ -17,7 +10,14 @@ export default class AdminOrders extends React.Component {
         this.state = {
             ordersArr: [],
             orderDetail: false,
-            orderId: ''
+            product: '',
+            userId: '',
+            glas: '',
+            back: '',
+            width: '',
+            height: '',
+            comment: '',
+            price: ''
         }
     }
 
@@ -47,9 +47,17 @@ export default class AdminOrders extends React.Component {
     render(){
         return(
             <div>
-                {this.state.orderDetail && 
+                {this.state.orderDetail &&
                     <OrderDetail 
-                        order-id={this.state.orderId}
+                        handleClick={ (bool) => this.setState({orderDetail: bool}) }
+                        product={this.state.product}
+                        glass={this.state.glass}
+                        back={this.state.back}
+                        user={this.state.userId}
+                        width={this.state.width}
+                        height={this.state.height}
+                        comment={this.state.comment}
+                        price={this.state.price}
                     />
                 }
                 <div className='admin__title'>
@@ -61,25 +69,33 @@ export default class AdminOrders extends React.Component {
                             return (
                                 <div 
                                     key={item.order_id} 
-                                    className='adminOrders__list-item'
                                     onClick={ () => {
-                                        this.setState({
+                                        this.setState({ 
                                             orderDetail: !this.state.orderDetail,
-                                            orderId: item.order_id
-                                        })
+                                            product: item.product,
+                                            glass: item.glass,
+                                            back: item.back,
+                                            userId: item.user,
+                                            width: item.width,
+                                            height: item.height,
+                                            comment: item.comment,
+                                            price: item.price
+                                        })                                   
                                     }}
                                 >
-                                    <div>
-                                        {item.order_id}
-                                    </div>
-                                    <div>
-                                        {item.date}
-                                    </div>
-                                    <div>
-                                        {item.product}
-                                    </div>
-                                    <div>
-                                    Kaina: {item.price} &euro;
+                                    <div className='adminOrders__list-item'>
+                                        <div>
+                                            {item.order_id}
+                                        </div>
+                                        <div>
+                                            {item.date}
+                                        </div>
+                                        <div>
+                                            {item.product}
+                                        </div>
+                                        <div>
+                                        Kaina: {item.price} &euro;
+                                        </div>
                                     </div>
                                 </div>
                             )
