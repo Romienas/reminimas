@@ -211,9 +211,7 @@ export default class OrderProduct extends React.Component {
                 let min = String(date.getMinutes()).padStart(2, '0')
 
                 const timeStamp = `${yyyy}-${mm}-${dd} ${hour}:${min}`
-                console.log(timeStamp)
 
-                console.log(generatedId)
                 db.collection('orders').doc(generatedId).set({
                     back: this.state.nugaraName,
                     comment: this.state.commentVal,

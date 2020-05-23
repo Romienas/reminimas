@@ -978,16 +978,29 @@ select {
 	}
 }
 
+.adminOrder {
+	margin: 40px 0;
+}
+
 .adminOrders__list {
 	display: flex;
 	justify-content: center;
+	margin-top: 30px;
 }
 
 .adminOrders__list-item {
 	display: flex;
-	flex-wrap: wrap;
-	margin: 10px 0;
+	margin: 15px 0;
 	border-bottom: 1px solid $borderColor;
+}
+
+.adminOrders__list-item--done {
+	color: $darkPrimaryColor;
+}
+
+.adminOrders__list-item-info {
+	display: flex;
+	flex-wrap: wrap;
 	width: fit-content;
 	cursor: pointer;
 	
@@ -996,7 +1009,17 @@ select {
 	}
 }
 
-.adminOrders__list-item:hover {
+.adminOrders__check {
+	color: $secodaryTextColor;
+	cursor: pointer;
+	margin-right: 20px;
+
+	:hover {
+		color: $darkPrimaryColor;
+	}
+}
+
+.adminOrders__list-item-info:hover {
 	color: $accentColor;
 }
 

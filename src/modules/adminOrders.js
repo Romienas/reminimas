@@ -1,6 +1,8 @@
 import React from 'react'
 import * as firebase from 'firebase'
 import OrderDetail from '../components/orderDetail'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 let db = firebase.firestore()
 
@@ -23,8 +25,7 @@ export default class AdminOrders extends React.Component {
 
     componentDidMount() {
         db.collection('orders')
-        .get()
-        .then(snap => {
+        .onSnapshot(snap => {
             let ordersArr = []
             snap.forEach(doc => {
                 let data = doc.data()
@@ -43,9 +44,23 @@ export default class AdminOrders extends React.Component {
         })
     }
 
+    checkItem = (id, done) => {
+        let bool
+        if (done === true) {
+            bool = false
+        }else if (done === false) {
+            bool = true
+        }
+        db.collection('orders')
+        .doc(id)
+        .update({
+            done: bool
+        })
+    }
+
     render(){
         return(
-            <div>
+            <div className='adminOrder'>
                 {this.state.orderDetail &&
                     <OrderDetail 
                         handleClick={ (bool) => this.setState({orderDetail: bool}) }
@@ -68,32 +83,48 @@ export default class AdminOrders extends React.Component {
                             return (
                                 <div 
                                     key={item.order_id} 
-                                    onClick={ () => {
-                                        this.setState({ 
-                                            orderDetail: !this.state.orderDetail,
-                                            product: item.product,
-                                            glass: item.glass,
-                                            back: item.back,
-                                            userId: item.user,
-                                            width: item.width,
-                                            height: item.height,
-                                            comment: item.comment,
-                                            price: item.price
-                                        })                                   
-                                    }}
                                 >
-                                    <div className='adminOrders__list-item'>
-                                        <div>
-                                            {item.order_id}
+                                    <div className={
+                                        item.done === true ? 
+                                        'adminOrders__list-item adminOrders__list-item--done' : 
+                                        'adminOrders__list-item'
+                                        }>
+                                        <div
+                                            className='adminOrders__check adminOrders__list-item--done'
+                                            onClick={() => this.checkItem(item.order_id, item.done)}
+                                        >
+                                            <FontAwesomeIcon 
+                                                icon={faCheck}
+                                            />
                                         </div>
-                                        <div>
-                                            {item.date}
-                                        </div>
-                                        <div>
-                                            {item.product}
-                                        </div>
-                                        <div>
-                                        Kaina: {item.price} &euro;
+                                        <div 
+                                            className='adminOrders__list-item-info'
+                                            onClick={ () => {
+                                                this.setState({ 
+                                                    orderDetail: !this.state.orderDetail,
+                                                    product: item.product,
+                                                    glass: item.glass,
+                                                    back: item.back,
+                                                    userId: item.user,
+                                                    width: item.width,
+                                                    height: item.height,
+                                                    comment: item.comment,
+                                                    price: item.price
+                                                })                                   
+                                            }}
+                                        >
+                                            <div>
+                                                {item.order_id}
+                                            </div>
+                                            <div>
+                                                {item.date}
+                                            </div>
+                                            <div>
+                                                {item.product}
+                                            </div>
+                                            <div>
+                                            Kaina: {item.price} &euro;
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
