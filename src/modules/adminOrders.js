@@ -40,7 +40,6 @@ export default class AdminOrders extends React.Component {
             this.setState({
                 ordersArr
             })
-            console.log(ordersArr)
         })
     }
 

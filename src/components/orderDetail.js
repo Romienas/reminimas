@@ -33,42 +33,44 @@ export default class OrderDetail extends React.Component {
                 onClick={ () => this.props.handleClick(false) }
             >
                 <div className='orderDetail__detail-box'>
-                    <div>
+                    <div className='orderDetail__item'>
                         <div>
-                            Užsakovas:
+                            <span>Užsakovas:</span>
                         </div>
                         <div>
                             {this.state.user.name} {this.state.user.surname}
                         </div>
                     </div>
-                    <div>
-                        Telefono nr.: {this.state.user.phone}
+                    <div className='orderDetail__item'>
+                        <span>Telefono nr.:</span> {this.state.user.phone}
                     </div>
-                    <div>
-                        El. paštas: {this.state.user.email}
+                    <div className='orderDetail__item'>
+                        <span>El. paštas:</span> {this.state.user.email}
                     </div>
-                    <div>
-                        Bageto pavadinimas: {this.props.product}
+                    <div className='orderDetail__item'>
+                        <span>Bageto pavadinimas:</span> {this.props.product}
                     </div>
-                    <div>
-                        Stiklas: {this.props.glass}
+                    <div className='orderDetail__item'>
+                        <span>Stiklas:</span> {this.props.glass}
                     </div>
-                    <div>
-                        Nugara: {this.props.back}
+                    <div className='orderDetail__item'>
+                        <span>Nugara:</span> {this.props.back}
                     </div>
-                    <div>
-                        Išmatavimai: {this.props.width} X {this.props.height} cm
+                    <div className='orderDetail__item'>
+                        <span>Išmatavimai:</span> {this.props.width} X {this.props.height} cm
                     </div>
-                    <div>
-                        Komentaras:
+                    <div className='orderDetail__item'>
+                        <div>
+                            <span>Komentaras:</span>
+                        </div>
+                        <div>
+                            {this.props.comment}
+                        </div>
                     </div>
-                    <div>
-                        {this.props.comment}
+                    <div className='orderDetail__item'>
+                        <span>Užsakymo vertė:</span> {this.props.price} &euro;
                     </div>
-                    <div>
-                        Užsakymo vertė: {this.props.price} &euro;
-                    </div>
-                    <div>
+                    <div className='orderDetail__button'>
                         <Button 
                             buttonText='Uždaryti'
                             handleClick={ () => this.props.handleClick(false) }

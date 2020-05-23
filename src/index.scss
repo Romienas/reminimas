@@ -312,6 +312,19 @@ select {
 	padding: 30px;
 }
 
+.orderDetail__item {
+	margin: 15px 0;
+
+	span {
+		font-weight: 700;
+	}
+}
+
+.orderDetail__button {
+	display: flex;
+	justify-content: flex-end;
+}
+
 // COMPONENT END
 
 .header {
