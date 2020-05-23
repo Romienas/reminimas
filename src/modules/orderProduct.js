@@ -213,7 +213,6 @@ export default class OrderProduct extends React.Component {
                 let min = String(date.getMinutes()).padStart(2, '0')
 
                 const timeStamp = `${yyyy}-${mm}-${dd} ${hour}:${min}`
-               
                 db.collection('orders').doc(generatedId).set({
                     back: this.state.nugaraName,
                     comment: this.state.commentVal,
@@ -224,7 +223,8 @@ export default class OrderProduct extends React.Component {
                     product: this.props.productObj.productName,
                     user: localStorage.getItem('userID'),
                     width: this.state.widthVal,
-                    height: this.state.heightVal
+                    height: this.state.heightVal,
+                    done: false
                 }).then(this.handleClick )
             }
         }, 500)

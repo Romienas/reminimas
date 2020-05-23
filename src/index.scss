@@ -294,6 +294,37 @@ select {
 	animation-duration: 0.5s;
 }
 
+.orderDetail__detail {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100vh;
+	top:0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.orderDetail__detail-box {
+	background-color: #FFFFFF;
+	min-width: 200px;
+	padding: 30px;
+}
+
+.orderDetail__item {
+	margin: 15px 0;
+
+	span {
+		font-weight: 700;
+	}
+}
+
+.orderDetail__button {
+	display: flex;
+	justify-content: flex-end;
+}
+
 // COMPONENT END
 
 .header {
@@ -947,6 +978,53 @@ select {
 		border-bottom: 1px solid $borderColor;
 	}
 }
+
+.adminOrder {
+	margin: 40px 0;
+}
+
+.adminOrders__list {
+	display: flex;
+	justify-content: center;
+	margin-top: 30px;
+}
+
+.adminOrders__list-item {
+	display: flex;
+	margin: 15px 0;
+	border-bottom: 1px solid $borderColor;
+}
+
+.adminOrders__list-item--done {
+	color: $darkPrimaryColor;
+}
+
+.adminOrders__list-item-info {
+	display: flex;
+	flex-wrap: wrap;
+	width: fit-content;
+	cursor: pointer;
+	
+	div {
+		margin-right: 10px;
+	}
+}
+
+.adminOrders__check {
+	color: $secodaryTextColor;
+	cursor: pointer;
+	margin-right: 20px;
+
+	:hover {
+		color: $darkPrimaryColor;
+	}
+}
+
+.adminOrders__list-item-info:hover {
+	color: $accentColor;
+}
+
+
 
 // MEDIA QUERIES
 

@@ -1,14 +1,15 @@
-import React from 'react';
-import Header from '../modules/header';
-import Footer from '../modules/footer';
-import * as firebase from 'firebase';
-import Input from '../components/inputs/input';
-import Button from '../components/button';
-import Loading from '../components/loading';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMinus, faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
+import React from 'react'
+import Header from '../modules/header'
+import Footer from '../modules/footer'
+import * as firebase from 'firebase'
+import Input from '../components/inputs/input'
+import Button from '../components/button'
+import Loading from '../components/loading'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faMinus, faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
+import AdminOrders from '../modules/adminOrders'
 
-let db = firebase.firestore();
+let db = firebase.firestore()
 
 export default class Admin extends React.Component {
     constructor(props) {
@@ -31,19 +32,6 @@ export default class Admin extends React.Component {
             descriptionVal: '',
             availableVal: true
         }
-
-        this.addCatInputVal = this.addCatInputVal.bind(this);
-        this.addCategory = this.addCategory.bind(this);
-        this.handleCatInput = this.handleCatInput.bind(this);
-        this.deleteCategory = this.deleteCategory.bind(this);
-        this.handleColorInput = this.handleColorInput.bind(this);
-        this.getColorInputValue = this.getColorInputValue.bind(this);
-        this.addColor = this.addColor.bind(this);
-        this.editPriceValue = this.editPriceValue.bind(this);
-        this.getPriceVal = this.getPriceVal.bind(this);
-        this.getAvailableVal = this.getAvailableVal.bind(this);
-        this.getDescriptionVal = this.getDescriptionVal.bind(this);
-        this.updatePriceVal = this.updatePriceVal.bind(this);
     }
 
     componentDidMount(){
@@ -51,9 +39,9 @@ export default class Admin extends React.Component {
         //GET CATEGORIES
         db.collection('categories').doc('cat').get()
         .then(doc => {
-            let data = doc.data();
-            data = JSON.stringify(data);
-            data = JSON.parse(data);
+            let data = doc.data()
+            data = JSON.stringify(data)
+            data = JSON.parse(data)
 
             this.setState({
                 categories: data.category,
@@ -64,9 +52,9 @@ export default class Admin extends React.Component {
         //GET COLORS
         db.collection('categories').doc('colors').get()
         .then(doc => {
-            let data = doc.data();
-            data = JSON.stringify(data);
-            data = JSON.parse(data);
+            let data = doc.data()
+            data = JSON.stringify(data)
+            data = JSON.parse(data)
 
             this.setState({
                 colors: data.colors,
@@ -77,9 +65,9 @@ export default class Admin extends React.Component {
         //GET STIKLAI PRICES
         db.collection('prices').doc('stiklai').get()
         .then(doc => {
-            let data = doc.data();
-            data = JSON.stringify(data);
-            data = JSON.parse(data);
+            let data = doc.data()
+            data = JSON.stringify(data)
+            data = JSON.parse(data)
             this.setState({
                 stiklaiPrices: data.stiklai,
                 loaded: true
@@ -89,9 +77,9 @@ export default class Admin extends React.Component {
         //GET STIKLAI PRICES
         db.collection('prices').doc('nugara').get()
         .then(doc => {
-            let data = doc.data();
-            data = JSON.stringify(data);
-            data = JSON.parse(data);
+            let data = doc.data()
+            data = JSON.stringify(data)
+            data = JSON.parse(data)
             this.setState({
                 nugaraPrices: data.nugara,
                 loaded: true
@@ -106,9 +94,9 @@ export default class Admin extends React.Component {
     }
 
     deleteCategory = (cat) => {
-        let index = this.state.categories.indexOf(cat);
+        let index = this.state.categories.indexOf(cat)
         if( index > -1) {
-            this.state.categories.splice(index, 1);
+            this.state.categories.splice(index, 1)
             this.setState({
                 categories: this.state.categories
             },() => {
@@ -120,7 +108,7 @@ export default class Admin extends React.Component {
     }
 
     addCategory = () => {
-        let categories = this.state.categories.concat(this.state.catInputVal);
+        let categories = this.state.categories.concat(this.state.catInputVal)
         this.setState({
             categories: categories
         },() => {
@@ -165,7 +153,7 @@ export default class Admin extends React.Component {
     }
 
     addColor = () => {
-        let colors = this.state.colors.concat(this.state.colorInputVal);
+        let colors = this.state.colors.concat(this.state.colorInputVal)
         this.setState({
             colors
         },() => {
@@ -176,9 +164,9 @@ export default class Admin extends React.Component {
     }
 
     deleteColor = (color) => {
-        let index = this.state.colors.indexOf(color);
+        let index = this.state.colors.indexOf(color)
         if( index > -1) {
-            this.state.colors.splice(index, 1);
+            this.state.colors.splice(index, 1)
             this.setState({
                 colors: this.state.colors
             },() => {
@@ -190,7 +178,7 @@ export default class Admin extends React.Component {
     }
 
     editPriceValue = (id) => {
-        let inputs = document.getElementById(id).getElementsByClassName('admin__prices-showInput');
+        let inputs = document.getElementById(id).getElementsByClassName('admin__prices-showInput')
 
         for (let i = 0; i < inputs.length; i++) {
             let inputClass = inputs[i];
@@ -508,6 +496,7 @@ export default class Admin extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <AdminOrders />
                 </div>
                 <Footer />
             </div>
