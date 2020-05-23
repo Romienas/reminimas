@@ -8,14 +8,18 @@ import Admin from './routes/admin'
 import AddProduct from './routes/addProduct'
 import Profile from './routes/profile'
 import Orders from './routes/orders'
+import Main from './routes/main'
 
 function App() {
   return (
     <div className='container'>
       { localStorage.getItem('admin') === 'true' ?
         <Switch>
-          <Route path='/' exact>
+          <Route path='/list' exact>
             <List />
+          </Route>
+          <Route path='/' exact>
+            <Main />
           </Route>
           <Route path='/registration' exact>
             <Registration />
@@ -29,8 +33,11 @@ function App() {
           </Route>
         </Switch> :
         <Switch>
-          <Route path='/' exact>
+          <Route path='/list' exact>
             <List />
+          </Route>
+          <Route path='/' exact>
+            <Main />
           </Route>
           <Route path='/registration' exact>
             <Registration />
