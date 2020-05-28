@@ -9,6 +9,7 @@ import ProductList from '../modules/productList';
 import * as firebase from 'firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import Footer from '../modules/footer'
 
 let db = firebase.firestore();
 let storage = firebase.storage();
@@ -300,6 +301,7 @@ export default class AddProduct extends React.Component {
                         </div> : null }                  
                 </div>
                 <ProductList />
+                <Footer />
             </div>
         )
     }
