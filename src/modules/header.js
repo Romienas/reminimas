@@ -89,9 +89,9 @@ class Header extends React.Component {
                 </div>
                 <div className='header__menu'>
                     <ul>
-                        <li><a href='/' >Paslaugos</a></li>
+                        <li><a href='/#main__services' >Paslaugos</a></li>
                         <li><a href='/list' >Rėmai</a></li>
-                        <li><a href='/' >Kontaktai</a></li>
+                        <li><a href='/#main__contact' >Kontaktai</a></li>
                     </ul>
                 </div> 
                 <div>

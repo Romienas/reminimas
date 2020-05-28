@@ -76,7 +76,7 @@ class Main extends React.Component {
                         </svg>
                     </div>
                 </section>
-                <section className='main__services'>
+                <section id='main__services'>
                     <div className='main__title'>
                         <h2>Paslaugos</h2>
                     </div>
@@ -447,7 +447,7 @@ class Main extends React.Component {
                         </div>
                     </div>
                 </section>
-                <section className='main__contact'>
+                <section id='main__contact' className='main__contact'>
                     <div className='main__title'>
                         <h2>Kontaktai</h2>
                     </div>
