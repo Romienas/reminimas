@@ -106,16 +106,16 @@ export const Privacy = () => {
                     <li>
                         Apsilankykite svetainėje „Your Online Choices“ norėdami atsisakyti įvairių pomėgiais 
                         grindžiamų reklamų adresu: 
-                        <a href='http://www.youronlinechoices.com/lt/'>www.youronlinechoices.com/lt/</a>.
+                        <a href='http://www.youronlinechoices.com/lt/'> www.youronlinechoices.com/lt/</a>.
                     </li>
                     <li>
                         „Google Analytics“. Norėdami, kad „Google Analytics“ neteiktų duomenų apie jus, galite 
                         atsisiųsti ir įdiegti „Google Analytics“ atsisakymo naršyklės plėtinį (ang. Opt-Out 
                         Browser Add-On) sekdami nurodymus čia: 
-                        <a href='https://tools.google.com/dlpage/gaoptout'>tools.google.com/dlpage/gaoptout</a>. 
+                        <a href='https://tools.google.com/dlpage/gaoptout'> tools.google.com/dlpage/gaoptout</a>. 
                         Jūs galite neleisti „Google“ naudoti slapukų apsilankydami „Google“ reklamos atsisakymo 
                         puslapyje čia: 
-                        <a href='https://www.google.com/policies/technologies/ads/'>www.google.com/policies/technologies/ads/</a>.
+                        <a href='https://www.google.com/policies/technologies/ads/'> www.google.com/policies/technologies/ads/</a>.
                     </li>
                     <li>
                         „Facebook“ reklamos. Jūs galite kontroliuoti, kaip „Facebook“ naudoja duomenis norėdama 
@@ -139,7 +139,7 @@ export const Privacy = () => {
             </p>
             <p>
                 Daugiau informacijos apie slapukus ir jų veikimo principus galite rasti internete  adresu: 
-                <a href='http://www.allaboutcookies.org/'>http://www.allaboutcookies.org</a>
+                <a href='http://www.allaboutcookies.org/'> http://www.allaboutcookies.org</a>
             </p>
             <p>
             Šiame skyriuje nenurodytų trečiųjų šalių atveju prašome pasidomėti jų privatumo ir slapukų politika, 
