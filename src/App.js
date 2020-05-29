@@ -9,6 +9,7 @@ import AddProduct from './routes/addProduct'
 import Profile from './routes/profile'
 import Orders from './routes/orders'
 import Main from './routes/main'
+import { Privacy } from './routes/privacy'
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route path='/registration' exact>
             <Registration />
+          </Route>
+          <Route path='/privacy' exact>
+            <Privacy />
           </Route>
           <ProtectedRoute path='/admin' component={Admin} />
           <ProtectedRoute path='/add-product' component={AddProduct} />
@@ -41,6 +45,9 @@ function App() {
           </Route>
           <Route path='/registration' exact>
             <Registration />
+          </Route>
+          <Route path='/privacy' exact>
+            <Privacy />
           </Route>
           <ProtectedRoute path='/profile' component={Profile} />
           <ProtectedRoute path='/orders' component={Orders} />
