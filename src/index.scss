@@ -1218,13 +1218,6 @@ select {
 	line-height: 1.5em;
 }
 
-.footer {
-	position: absolute;
-	bottom: 0;
-	left:0;
-	width: 100%;
-}
-
 .footer__links {
 	display: flex;
 	justify-content: center;
@@ -1249,6 +1242,14 @@ select {
 		line-height: 1.5em;
 		list-style-type: disc;
 		margin-left: 30px;
+	}
+
+	a {
+		color: $secodaryTextColor;
+
+	}
+	a:hover {
+		color: $accentColor;
 	}
 }
 
