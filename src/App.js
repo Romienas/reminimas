@@ -10,6 +10,7 @@ import Profile from './routes/profile'
 import Orders from './routes/orders'
 import Main from './routes/main'
 import { Privacy } from './routes/privacy'
+import { PrivacyPop } from './modules/privacyPop'
 
 function App() {
   return (
@@ -56,8 +57,9 @@ function App() {
           </Route>
         </Switch>
       }
+      {localStorage.getItem('agree') === 'true' ? null : <PrivacyPop />}
     </div>
-  );
+  )
 }
 
 export default App;
