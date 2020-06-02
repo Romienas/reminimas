@@ -8,7 +8,7 @@ export default class Footer extends React.Component {
                     <a href='/privacy' >Privatumo politika</a>
                     <a href='/'>Užsakymo pateikimas</a>
                 </div>
-                <div>
+                <div className='footer__signature'>
                     Sukurta <a href='https://webrom.lt' >Webrom</a>
                 </div>
             </div>
