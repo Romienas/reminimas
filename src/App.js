@@ -12,54 +12,54 @@ import Main from './routes/main'
 import { Privacy } from './routes/privacy'
 import { PrivacyPop } from './modules/privacyPop'
 
-function App() {
-  return (
-    <div className='container'>
-      { localStorage.getItem('admin') === 'true' ?
-        <Switch>
-          <Route path='/list' exact>
-            <List />
-          </Route>
-          <Route path='/' exact>
-            <Main />
-          </Route>
-          <Route path='/registration' exact>
-            <Registration />
-          </Route>
-          <Route path='/privacy' exact>
-            <Privacy />
-          </Route>
-          <ProtectedRoute path='/admin' component={Admin} />
-          <ProtectedRoute path='/add-product' component={AddProduct} />
-          <ProtectedRoute path='/profile' component={Profile} />
-          <ProtectedRoute path='/orders' component={Orders} />
-          <Route path='/*'>
-            <FourZeroFour />
-          </Route>
-        </Switch> :
-        <Switch>
-          <Route path='/list' exact>
-            <List />
-          </Route>
-          <Route path='/' exact>
-            <Main />
-          </Route>
-          <Route path='/registration' exact>
-            <Registration />
-          </Route>
-          <Route path='/privacy' exact>
-            <Privacy />
-          </Route>
-          <ProtectedRoute path='/profile' component={Profile} />
-          <ProtectedRoute path='/orders' component={Orders} />
-          <Route path='/*'>
-            <FourZeroFour />
-          </Route>
-        </Switch>
-      }
-      {localStorage.getItem('agree') === 'true' ? null : <PrivacyPop />}
-    </div>
-  )
+export default class App extends React.Component {
+  render(){
+    return (
+      <div className='container'>
+        { localStorage.getItem('admin') === 'true' ?
+          <Switch>
+            <Route path='/list' exact>
+              <List />
+            </Route>
+            <Route path='/' exact>
+              <Main />
+            </Route>
+            <Route path='/registration' exact>
+              <Registration />
+            </Route>
+            <Route path='/privacy' exact>
+              <Privacy />
+            </Route>
+            <ProtectedRoute path='/admin' component={Admin} />
+            <ProtectedRoute path='/add-product' component={AddProduct} />
+            <ProtectedRoute path='/profile' component={Profile} />
+            <ProtectedRoute path='/orders' component={Orders} />
+            <Route path='/*'>
+              <FourZeroFour />
+            </Route>
+          </Switch> :
+          <Switch>
+            <Route path='/list' exact>
+              <List />
+            </Route>
+            <Route path='/' exact>
+              <Main />
+            </Route>
+            <Route path='/registration' exact>
+              <Registration />
+            </Route>
+            <Route path='/privacy' exact>
+              <Privacy />
+            </Route>
+            <ProtectedRoute path='/profile' component={Profile} />
+            <ProtectedRoute path='/orders' component={Orders} />
+            <Route path='/*'>
+              <FourZeroFour />
+            </Route>
+          </Switch>
+        }
+        <PrivacyPop />
+      </div>
+    )
+  }
 }
-
-export default App;
