@@ -11,6 +11,7 @@ import Orders from './routes/orders'
 import Main from './routes/main'
 import { Privacy } from './routes/privacy'
 import { PrivacyPop } from './modules/privacyPop'
+import { LoginPage } from './routes/loginPage'
 
 export default class App extends React.Component {
   render(){
@@ -29,6 +30,9 @@ export default class App extends React.Component {
             </Route>
             <Route path='/privacy' exact>
               <Privacy />
+            </Route>
+            <Route path='/login' exact>
+              <LoginPage />
             </Route>
             <ProtectedRoute path='/admin' component={Admin} />
             <ProtectedRoute path='/add-product' component={AddProduct} />
@@ -50,6 +54,9 @@ export default class App extends React.Component {
             </Route>
             <Route path='/privacy' exact>
               <Privacy />
+            </Route>
+            <Route path='/login' exact>
+              <LoginPage />
             </Route>
             <ProtectedRoute path='/profile' component={Profile} />
             <ProtectedRoute path='/orders' component={Orders} />

@@ -1289,6 +1289,17 @@ select {
 	}
 }
 
+.loginPage {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 50px 0;
+	
+	.popup {
+		position: relative;
+	}
+}
+
 // MEDIA QUERIES
 @media only screen and (max-width: 1220px) {
 	.main__comments-comment {
