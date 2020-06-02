@@ -1,17 +1,17 @@
-import React from 'react';
-import Header from '../modules/header';
-import Footer from '../modules/footer';
-import Loading from '../components/loading';
-import Button from '../components/button';
-import Select from '../components/select';
-import ZoomImage from '../components/zoomImage';
-import OrderProduct from '../modules/orderProduct';
-import * as firebase from 'firebase'; 
-import '../firebase';
+import React from 'react'
+import Header from '../modules/header'
+import Footer from '../modules/footer'
+import Loading from '../components/loading'
+import Button from '../components/button'
+import Select from '../components/select'
+import ZoomImage from '../components/zoomImage'
+import OrderProduct from '../modules/orderProduct'
+import * as firebase from 'firebase'
+import '../firebase'
 
-let db = firebase.firestore();
-let storage = firebase.storage();
-let storageRef = storage.ref();
+let db = firebase.firestore()
+let storage = firebase.storage()
+let storageRef = storage.ref()
 
 export default class List extends React.Component {
     constructor(props) {
@@ -24,22 +24,28 @@ export default class List extends React.Component {
             selectedCategory: '',
             selectedColor:'',
             zoomImageUrl: '',
-            productInfo: ''
+            productInfo: '',
+            logged: false
         }
-
-        this.getProductsList = this.getProductsList.bind(this);
-        this.handleCategoriesVal = this.handleCategoriesVal.bind(this);
-        this.handleColorsVal = this.handleColorsVal.bind(this);
-        this.filterProducts = this.filterProducts.bind(this);
-        this.clearFilter = this.clearFilter.bind(this);
-        this.closeZoom = this.closeZoom.bind(this);
-        this.closeOrder = this.closeOrder.bind(this);
     }
     
    componentDidMount() {
         this.setState({
             loaded: true
         })
+
+        if (localStorage.getItem('userID')){
+            console.log('true')
+            this.setState({
+                logged: true
+            }) 
+        }else {
+            console.log('false')
+            this.setState({
+                logged: false
+            })
+        }
+        
         //GET categories array
         db.collection('categories').doc('cat').get()
         .then(doc => {
@@ -64,6 +70,22 @@ export default class List extends React.Component {
             })
         })
         this.getProductsList();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.logged !== this.state.logged){
+            if (localStorage.getItem('userID')){
+                console.log('true')
+                this.setState({
+                    logged: true
+                }) 
+            }else {
+                console.log('false')
+                this.setState({
+                    logged: false
+                })
+            }
+        }
     }
 
     getProductsList = () => {
@@ -300,6 +322,7 @@ export default class List extends React.Component {
                                             Kaina: {product.price} &euro;/m
                                         </div>
                                         <div className='list__button'>
+                                            {this.state.loaded ? 
                                             <Button 
                                                 buttonText='Užsakyti' 
                                                 handleClick={() => this.productClick(
@@ -309,7 +332,11 @@ export default class List extends React.Component {
                                                     product.width,
                                                     product.images
                                                 )}
-                                            />
+                                            /> :
+                                            <div className='list__login'>
+                                            Norėdami užsisakyti turite <a href='/login/'>prisijungti</a>
+                                            </div> }
+                                            
                                         </div>
                                     </div>
                                 </div>

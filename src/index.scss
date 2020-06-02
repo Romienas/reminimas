@@ -680,6 +680,16 @@ select {
 	justify-content: flex-end;
 }
 
+.list__login {
+	text-align: end;
+	color: $secodaryTextColor;
+	line-height: 1.2em;
+	
+	a {
+		color: $accentColor;
+	}
+}
+
 .orderProduct {
 	position: fixed;
 	display: flex;
