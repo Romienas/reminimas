@@ -8,12 +8,15 @@ import ZoomImage from '../components/zoomImage'
 import OrderProduct from '../modules/orderProduct'
 import * as firebase from 'firebase'
 import '../firebase'
+import { UserContext } from '../contexts/user'
 
 let db = firebase.firestore()
 let storage = firebase.storage()
 let storageRef = storage.ref()
 
 export default class List extends React.Component {
+    static contextType = UserContext
+
     constructor(props) {
         super(props);
         this.state = {
@@ -34,18 +37,13 @@ export default class List extends React.Component {
             loaded: true
         })
 
+        const { trueFunc, falseFunc } = this.context
         if (localStorage.getItem('userID')){
-            console.log('true')
-            this.setState({
-                logged: true
-            }) 
+            trueFunc()
         }else {
-            console.log('false')
-            this.setState({
-                logged: false
-            })
+            falseFunc()
         }
-        
+
         //GET categories array
         db.collection('categories').doc('cat').get()
         .then(doc => {
@@ -70,22 +68,6 @@ export default class List extends React.Component {
             })
         })
         this.getProductsList();
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        if(prevState.logged !== this.state.logged){
-            if (localStorage.getItem('userID')){
-                console.log('true')
-                this.setState({
-                    logged: true
-                }) 
-            }else {
-                console.log('false')
-                this.setState({
-                    logged: false
-                })
-            }
-        }
     }
 
     getProductsList = () => {
@@ -247,6 +229,7 @@ export default class List extends React.Component {
     }
 
     render() {
+        const { logged } = this.context
         return(
             <div>
                 {this.state.productInfo ? 
@@ -322,7 +305,7 @@ export default class List extends React.Component {
                                             Kaina: {product.price} &euro;/m
                                         </div>
                                         <div className='list__button'>
-                                            {this.state.loaded ? 
+                                            {logged ? 
                                             <Button 
                                                 buttonText='Užsakyti' 
                                                 handleClick={() => this.productClick(

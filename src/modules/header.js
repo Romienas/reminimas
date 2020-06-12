@@ -6,8 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import MobileMenu from './mobileMenu'
 import { withRouter } from 'react-router-dom'
+import { UserContext } from '../contexts/user'
 
 class Header extends React.Component {
+    static contextType = UserContext
     constructor(props) {
         super(props);
         this.state = {
@@ -57,6 +59,8 @@ class Header extends React.Component {
 
     signOut = () => {
         const {history} = this.props
+        const {falseFunc} = this.context
+
         firebase.auth().signOut().then(() => {
             localStorage.removeItem('userEmail')
             localStorage.removeItem('userID')
@@ -66,6 +70,8 @@ class Header extends React.Component {
             this.setState({
                 userLogged: false
             })
+
+            falseFunc()
 
             history.push('/')
 
@@ -141,7 +147,9 @@ class Header extends React.Component {
                     {this.state.showPopUp === false ? null :
                     <div>
                         <div className='header__close-popup' onClick={this.showPopUp}></div>
-                        <Login />
+                        {/* <UserContextProvider> */}
+                            <Login />
+                        {/* </UserContextProvider> */}
                     </div>
                     }
                 </div>

@@ -3,8 +3,10 @@ import Input from '../components/inputs/input';
 import Button from '../components/button';
 import * as firebase from 'firebase';
 import InfoPop from '../components/infoPop';
+import { UserContext } from '../contexts/user'
 
 export default class Login extends React.Component {
+    static contextType = UserContext
     constructor(props) {
         super(props);
         this.state = {
@@ -38,6 +40,9 @@ export default class Login extends React.Component {
             localStorage.setItem('userEmail', authData.email);
             localStorage.setItem('userID', authData.uid);
             localStorage.setItem('logged', 'true')
+
+            const { trueFunc } = this.context
+            trueFunc()
 
         })
         .catch((error) => {
