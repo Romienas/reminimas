@@ -1,24 +1,25 @@
-import React from 'react';
-import * as firebase from 'firebase';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import React from 'react'
+import * as firebase from 'firebase'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-let db = firebase.firestore();
+let db = firebase.firestore()
 
 export default class ProductList extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             productsArr: []
         }
     }
 
     componentDidMount(){     
-        db.collection('products').onSnapshot((querySnapshot) => {
+        db.collection('products')
+        .onSnapshot((querySnapshot) => {
             let productsArr = [];
             querySnapshot.forEach((doc) => {
-                productsArr.push(doc.data());
+                productsArr.push(doc.data())
             });
             this.setState({
                 productsArr
@@ -27,7 +28,10 @@ export default class ProductList extends React.Component {
     }
 
     deleteProduct = (id) => {
-        db.collection('products').doc(id).delete().then( () => {
+        db.collection('products')
+        .doc(id)
+        .delete()
+        .then( () => {
             console.log('istrinta')
         })
     }
