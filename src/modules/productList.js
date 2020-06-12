@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 let db = firebase.firestore()
+let storage = firebase.storage()
+let storageRef = storage.ref()
 
 export default class ProductList extends React.Component {
 
@@ -28,6 +30,20 @@ export default class ProductList extends React.Component {
     }
 
     deleteProduct = (id) => {
+        // Delete photos
+        const foundObj  = this.state.productsArr.find(el => el.id === id)
+        console.log(foundObj)
+        foundObj.images.forEach( i => {
+            storageRef.child(`images/${i}`)
+            .delete()
+            .then(() => {
+                console.log('Image deleted')
+            }).catch(err => {
+                console.log(err)
+            })
+        })
+
+        // Delete product from database
         db.collection('products')
         .doc(id)
         .delete()

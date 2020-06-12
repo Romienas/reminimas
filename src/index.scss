@@ -605,6 +605,10 @@ select {
 		border-bottom: 1px solid $borderColor;
 	}
 	
+	tr:hover {
+		background-color: rgb(241, 241, 241);
+	}
+	
 	th {
 		font-weight: 700;
 		padding-bottom: 5px;
