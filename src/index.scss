@@ -1310,6 +1310,26 @@ select {
 	}
 }
 
+.orderProcedure {
+	line-height: 1.5em;
+
+	p {
+		margin: 10px 0;
+	}
+
+	li {
+		list-style-type: disc;
+		margin-left: 30px;
+	}
+
+	a {
+		color: $secodaryTextColor;
+	}
+
+	a:hover {
+		color: $accentColor;
+	}
+}
 // MEDIA QUERIES
 @media only screen and (max-width: 1220px) {
 	.main__comments-comment {

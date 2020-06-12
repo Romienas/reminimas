@@ -13,6 +13,7 @@ import { Privacy } from './routes/privacy'
 import { PrivacyPop } from './modules/privacyPop'
 import { LoginPage } from './routes/loginPage'
 import UserContextProvider from './contexts/user'
+import OrderProcedure from './routes/orderProcedure'
 
 export default class App extends React.Component {
   render(){
@@ -35,6 +36,9 @@ export default class App extends React.Component {
               </Route>
               <Route path='/login' exact>
                   <LoginPage />
+              </Route>
+              <Route path='/orderprocedure' exact>
+                  <OrderProcedure />
               </Route>
               <ProtectedRoute path='/admin' component={Admin} />
               <ProtectedRoute path='/add-product' component={AddProduct} />
@@ -59,6 +63,9 @@ export default class App extends React.Component {
               </Route>
               <Route path='/login' exact>
                 <LoginPage />
+              </Route>
+              <Route path='/orderprocedure' exact>
+                  <OrderProcedure />
               </Route>
               <ProtectedRoute path='/profile' component={Profile} />
               <ProtectedRoute path='/orders' component={Orders} />
