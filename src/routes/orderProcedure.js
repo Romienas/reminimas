@@ -17,7 +17,7 @@ export default class OrderProcedure extends React.Component {
                             Nueikite į <a href='/list'>rėmų puslapį</a> iš išsirinkite jums patikusį rėmą;
                         </li>
                         <li>
-                            Užpildykite duomenis t.y. darbo didį, norimas medžiagas
+                            Užpildykite duomenis t.y. darbo didį, norimas medžiagas;
                         </li>
                         <li>
                             Formos apačioje pamatysite preliminarią kainą, jei viską suvedėte teisingai 
