@@ -1,5 +1,5 @@
-import React from 'react'
-import List from './routes/list'
+import React, { lazy } from 'react'
+// import List from './routes/list'
 import Registration from './routes/registration'
 import FourZeroFour from './routes/404'
 import {Switch, Route} from 'react-router-dom'
@@ -14,6 +14,8 @@ import { PrivacyPop } from './modules/privacyPop'
 import { LoginPage } from './routes/loginPage'
 import UserContextProvider from './contexts/user'
 import OrderProcedure from './routes/orderProcedure'
+
+const List = lazy(() => import('./routes/list'))
 
 export default class App extends React.Component {
   render(){
