@@ -1198,7 +1198,7 @@ select {
 
 .main_comments-block {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	flex-wrap: wrap;
 }
 
@@ -1353,6 +1353,10 @@ select {
 }
 
 @media only screen and (max-width: 1120px) {
+	.main_comments-block{
+		justify-content: space-between;
+	}
+
 	.main__comments-comment {
 		max-width: none;
 	}
