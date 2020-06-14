@@ -140,6 +140,8 @@ select {
  }
 
  .button {
+	 width: -webkit-fit-content;
+	 width: -moz-fit-content;
 	 width: fit-content;
 	 background-color: #FFC107;
 	 cursor: pointer;
@@ -189,17 +191,26 @@ select {
 	display: none;
 }
 
+@-webkit-keyframes box-in {
+	from {margin-top: 0; opacity: 0;}
+	to {margin-top: 50px; opacity: 1;}
+}
+
 @keyframes box-in {
 	from {margin-top: 0; opacity: 0;}
 	to {margin-top: 50px; opacity: 1;}
 }
 .info-pop__box {
 	margin: 50px auto;
+	width: -webkit-fit-content;
+	width: -moz-fit-content;
 	width: fit-content;
 	border: 1px solid $borderColor;
 	background-color: $lightPrimaryColor;
-	animation-name: box-in;
-	animation-duration: 1s;
+	-webkit-animation-name: box-in;
+	        animation-name: box-in;
+	-webkit-animation-duration: 1s;
+	        animation-duration: 1s;
 	z-index: 10;
 }
 
@@ -213,6 +224,20 @@ select {
 
 .info-pop__text {
 	padding: 30px;
+}
+
+@-webkit-keyframes loading {
+	0% {background-image: linear-gradient(to right, $accentColor , $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor);}
+	10% {background-image: linear-gradient(to right, $darkPrimaryColor, $accentColor , $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor);}
+	20% {background-image: linear-gradient(to right, $darkPrimaryColor, $darkPrimaryColor , $accentColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor);}
+	30% {background-image: linear-gradient(to right, $darkPrimaryColor,$darkPrimaryColor, $darkPrimaryColor , $accentColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor);}
+	40% {background-image: linear-gradient(to right, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $accentColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor);}
+	50% {background-image: linear-gradient(to right, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $accentColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor);}
+	60% {background-image: linear-gradient(to right, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor $accentColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor);}
+	70% {background-image: linear-gradient(to right, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $accentColor, $darkPrimaryColor, $darkPrimaryColor);}
+	80% {background-image: linear-gradient(to right, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $accentColor, $darkPrimaryColor);}
+	90% {background-image: linear-gradient(to right, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $accentColor);}
+	100% {background-image: linear-gradient(to right, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor, $darkPrimaryColor);}
 }
 
 @keyframes loading {
@@ -232,9 +257,12 @@ select {
 .loading {
 	width: 100%;
 	height: 3px;
-	animation-name: loading;
-	animation-duration: 1s;
-	animation-iteration-count: infinite;
+	-webkit-animation-name: loading;
+	        animation-name: loading;
+	-webkit-animation-duration: 1s;
+	        animation-duration: 1s;
+	-webkit-animation-iteration-count: infinite;
+	        animation-iteration-count: infinite;
 }
 
 .select{
@@ -266,6 +294,11 @@ select {
 	}
 }
 
+@-webkit-keyframes fadeInBox {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+
 @keyframes fadeInBox {
 	from {opacity: 0;}
 	to {opacity: 1;}
@@ -294,8 +327,10 @@ select {
 	width: 200px;
 	bottom: 15px;
 	left: 15px;
-	animation-name: fadeInBox;
-	animation-duration: 0.5s;
+	-webkit-animation-name: fadeInBox;
+	        animation-name: fadeInBox;
+	-webkit-animation-duration: 0.5s;
+	        animation-duration: 0.5s;
 }
 
 .orderDetail__detail {
@@ -455,6 +490,8 @@ select {
 
 .four-zero-four {
 	margin: 50px auto;
+	width: -webkit-fit-content;
+	width: -moz-fit-content;
 	width: fit-content;
 }
 
@@ -1020,6 +1057,8 @@ select {
 .adminOrders__list-item-info {
 	display: flex;
 	flex-wrap: wrap;
+	width: -webkit-fit-content;
+	width: -moz-fit-content;
 	width: fit-content;
 	cursor: pointer;
 	
@@ -1069,9 +1108,21 @@ select {
 }
 
 #main__light-green {
-	animation: lightGreen 10s infinite;
+	-webkit-animation: lightGreen 10s infinite;
+	        animation: lightGreen 10s infinite;
 	transform-origin: 130px 394.25px;
-	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	        animation-fill-mode: forwards;
+}
+
+
+@-webkit-keyframes lightGreen {
+	0%, 100% {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(20deg);
+	}
 }
 
 
@@ -1085,9 +1136,21 @@ select {
 }
 
 #main__dark-green {
-	animation: darkGreen 8s infinite;
+	-webkit-animation: darkGreen 8s infinite;
+	        animation: darkGreen 8s infinite;
 	transform-origin: 130px 394.25px;
-	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	        animation-fill-mode: forwards;
+}
+
+
+@-webkit-keyframes darkGreen {
+	0%, 100% {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(-20deg);
+	}
 }
 
 
@@ -1132,8 +1195,19 @@ select {
 }
 
 #big-leaves {
-	animation: bigLeaves 10s infinite;
+	-webkit-animation: bigLeaves 10s infinite;
+	        animation: bigLeaves 10s infinite;
 	transform-origin: center;
+}
+
+@-webkit-keyframes bigLeaves {
+	0%, 100% {
+		transform: rotate(0deg);
+	}
+
+	50% {
+		transform: rotate(4deg);
+	}
 }
 
 @keyframes bigLeaves {
@@ -1181,15 +1255,19 @@ select {
 }
 
 #contact_light_green {
-	animation: lightGreen 10s infinite;
+	-webkit-animation: lightGreen 10s infinite;
+	        animation: lightGreen 10s infinite;
 	transform-origin: 59px 440px;
-	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	        animation-fill-mode: forwards;
 }
 
 #contact_dark_green {
-	animation: darkGreen 8s infinite;
+	-webkit-animation: darkGreen 8s infinite;
+	        animation: darkGreen 8s infinite;
 	transform-origin: 59px 440px;
-	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	        animation-fill-mode: forwards;
 }
 
 .main__comments {
@@ -1279,6 +1357,7 @@ select {
 }
 
 .privacyPop {
+	position: -webkit-sticky;
 	position: sticky;
 	bottom: 0;
 }
