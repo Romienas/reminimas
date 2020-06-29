@@ -52,13 +52,13 @@ export default class MobileMenu extends React.Component {
                         }
                         <ul className='mobileMenu__menu'>
                             <li>
-                                <a href='/' >Paslaugos</a>
+                                <a href='/#main__services' >Paslaugos</a>
                             </li>
                             <li>
-                                <a href='/' >Rėmai</a>
+                                <a href='/list' >Rėmai</a>
                             </li>
                             <li>
-                                <a href='/' >Kontaktai</a>
+                                <a href='/#main__contact' >Kontaktai</a>
                             </li>
                             { localStorage.getItem('userID') ? 
                                 <div>
@@ -76,7 +76,7 @@ export default class MobileMenu extends React.Component {
                                         <a href='/profile'>Profilis</a>
                                     </li>
                                     <li>
-                                        <a href='/'>Užsakymai</a>
+                                        <a href='/orders'>Užsakymai</a>
                                     </li>
                                     <li>
                                         <div onClick={this.signOut}>Atsijungti</div>
