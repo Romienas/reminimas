@@ -1108,15 +1108,15 @@ select {
 }
 
 #main__light-green {
-	-webkit-animation: lightGreen 10s infinite;
-	        animation: lightGreen 10s infinite;
+	-webkit-animation: lightGreenAnimation 10s infinite;
+	        animation: lightGreenAnimation 10s infinite;
 	transform-origin: 130px 394.25px;
 	-webkit-animation-fill-mode: forwards;
 	        animation-fill-mode: forwards;
 }
 
 
-@-webkit-keyframes lightGreen {
+@-webkit-keyframes lightGreenAnimation {
 	0%, 100% {
 		transform: rotate(0deg);
 	}
@@ -1126,7 +1126,7 @@ select {
 }
 
 
-@keyframes lightGreen {
+@keyframes lightGreenAnimation {
 	0%, 100% {
 		transform: rotate(0deg);
 	}
@@ -1136,15 +1136,15 @@ select {
 }
 
 #main__dark-green {
-	-webkit-animation: darkGreen 8s infinite;
-	        animation: darkGreen 8s infinite;
+	-webkit-animation: darkGreenAnimation 8s infinite;
+	        animation: darkGreenAnimation 8s infinite;
 	transform-origin: 130px 394.25px;
 	-webkit-animation-fill-mode: forwards;
 	        animation-fill-mode: forwards;
 }
 
 
-@-webkit-keyframes darkGreen {
+@-webkit-keyframes darkGreenAnimation {
 	0%, 100% {
 		transform: rotate(0deg);
 	}
@@ -1154,7 +1154,7 @@ select {
 }
 
 
-@keyframes darkGreen {
+@keyframes darkGreenAnimation {
 	0%, 100% {
 		transform: rotate(0deg);
 	}
@@ -1255,16 +1255,16 @@ select {
 }
 
 #contact_light_green {
-	-webkit-animation: lightGreen 10s infinite;
-	        animation: lightGreen 10s infinite;
+	-webkit-animation: lightGreenAnimation 10s infinite;
+	        animation: lightGreenAnimation 10s infinite;
 	transform-origin: 59px 440px;
 	-webkit-animation-fill-mode: forwards;
 	        animation-fill-mode: forwards;
 }
 
 #contact_dark_green {
-	-webkit-animation: darkGreen 8s infinite;
-	        animation: darkGreen 8s infinite;
+	-webkit-animation: darkGreenAnimation 8s infinite;
+	        animation: darkGreenAnimation 8s infinite;
 	transform-origin: 59px 440px;
 	-webkit-animation-fill-mode: forwards;
 	        animation-fill-mode: forwards;
